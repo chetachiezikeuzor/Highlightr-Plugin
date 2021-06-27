@@ -165,6 +165,7 @@ function t(str) {
 const DEFAULT_SETTINGS = {
 };
 
+
 var highlighterColorsMap = [ //This could be a flat object 
     {color: 'Pink', value: '#FFB8EB'},
     {color: 'Red', value: '#FF5582'},
