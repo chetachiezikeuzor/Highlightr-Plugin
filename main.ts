@@ -361,6 +361,7 @@ const addIcons = () => {
     });
 };
 
+
 export default class HighlightrPlugin extends Plugin {
     constructor() {
         super(...arguments);
