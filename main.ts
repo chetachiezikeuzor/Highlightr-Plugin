@@ -179,7 +179,6 @@ var highlighterColorsMap = [ //This could be a flat object
 
 
 
-
 class HighlighterPopover extends obsidian.Plugin{
     constructor() {
         super(...arguments);
