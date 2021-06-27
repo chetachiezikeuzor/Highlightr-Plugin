@@ -8,7 +8,6 @@ const DEFAULT_SETTINGS: MyPluginSettings = {
 	mySetting: 'default'
 }
 
-
 /**
  * Transform the case in `value` (`string`) to match that of `base` (`string`).
  *
