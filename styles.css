@@ -1,0 +1,62 @@
+.setting-item.extra > .setting-item-info {
+    opacity: 0.65;
+}
+
+a[href="https://www.buymeacoffee.com/phibr0"] > img {
+    height: 2.2em;
+}
+
+a[href="https://www.buymeacoffee.com/phibr0"]{
+    transform: translate(0, 5%);
+}
+
+.markdown-preview-view mark.highlighter{
+   background-color: rgb(255, 141, 217); 
+}
+
+.hl-file-menu {
+    z-index: 50;
+}
+
+#highlighterContainer{
+    position: fixed;
+    z-index: var(--layer-menu);
+    top: 200px;
+    left: 150px;
+    width: auto;
+    height: auto;
+    display: inline-block;
+    user-select: none;
+    max-height: calc(100% - 25px);
+    overflow: hidden;
+}
+
+#highlightColorButtonList{
+    min-width: 158px;
+    max-width: 225px;
+    max-height: 200px;
+    padding-left: 0em;
+    margin: 0 auto;
+    border-radius: 5px;
+    font-size: 14px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    position: fixed;
+    background-color: var(--background-primary);
+    box-shadow: 0px 3px 25px rgba( 31, 38, 135, 0.1 );
+    border: 1px solid var(--background-modifier-border);
+}
+
+#highlightColorButtonList li{
+    padding: 16px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    display: inline-flexbox;
+    cursor: pointer;
+    text-align: left;
+    list-style-type: none;
+    border-bottom: 1px solid var(--background-modifier-border);
+}
+
+
+
