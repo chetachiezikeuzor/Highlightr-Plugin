@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## Obsidian Sample Plugin
 
 This is a sample plugin for Obsidian (https://obsidian.md).
@@ -55,3 +56,11 @@ Quick starting guide for new plugin devs:
 ### API Documentation
 
 See https://github.com/obsidianmd/obsidian-api
+=======
+# Highlightr-Plugin
+
+## Changelog
+<a href="https://www.loom.com/share/c344234a0cfd464c9572396d962247cf">
+    <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/c344234a0cfd464c9572396d962247cf-with-play.gif">
+  </a>
+>>>>>>> 0b5ed4cb52212b94531694723de74a3cd5ac554f
