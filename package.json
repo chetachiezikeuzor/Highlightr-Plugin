@@ -1,5 +1,5 @@
 {
-  "name": "Highlightr Plugin",
+  "name": "highlightr-plugin",
   "version": "0.0.1",
   "description": "This is a highlighter for Obsidian (https://obsidian.md)",
   "main": "main.js",
