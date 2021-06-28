@@ -2,6 +2,8 @@
     opacity: 0.65;
 }
 
+/* typescript-refactor => master
+*/
 a[href="https://www.buymeacoffee.com/chetachi"] > img {
     height: 2.2em;
 }
