@@ -3,7 +3,7 @@
 	"name": "Highlightr",
 	"version": "0.0.1",
 	"minAppVersion": "0.0.0",
-	"description": "This is a simple highlightr for the Obsidian Note-Taking Tool.",
+	"description": "This is a simple highlighter plugin for the Obsidian Note-Taking Tool.",
 	"author": "chetachi",
 	"authorUrl": "https://github.com/chetachiezikeuzor",
 	"isDesktopOnly": false
