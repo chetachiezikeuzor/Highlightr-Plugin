@@ -10,10 +10,6 @@ a[href="https://www.buymeacoffee.com/chetachi"]{
     transform: translate(0, 5%);
 }
 
-.hl-file-menu {
-    z-index: 50;
-}
-
 #highlighterContainer{
     position: fixed;
     z-index: var(--layer-menu);
