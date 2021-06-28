@@ -1,3 +1,3 @@
 # Highlightr-Plugin
 
-## Chamgelog
+## Changelog
