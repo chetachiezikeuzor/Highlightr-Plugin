@@ -311,6 +311,33 @@ class HighlighterPopover extends obsidian.Plugin{
           colorButtonContainer.style.top = `${mouseY}px`;
           colorButtonContainer.style.left = `${mouseX}px`;
         });
+        
+        window.addEventListener('click', (e) => {
+            done(e);
+        })
+        const done = (e, trigger) => {
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            const colorButtonContainerWidth = colorButtonContainer.clientWidth;
+            const colorButtonContainerHeight = colorButtonContainer.clientHeight;
+            const colorButtonContainerLeft = Number(colorButtonContainer.style.left.replace('px', ''));
+            const colorButtonContainerTop = Number(colorButtonContainer.style.top.replace('px', ''));
+        
+            if(mouseX < colorButtonContainerLeft || mouseX > colorButtonContainerLeft + colorButtonContainerWidth || mouseY < colorButtonContainerTop || mouseY > colorButtonContainerTop + colorButtonContainerHeight || !trigger) {
+                let ulElement = document.getElementById("highlightColorButtonList");
+                if(ulElement){
+                    if (ulElement.firstChild) {
+                        ulElement.removeChild(ulElement.firstChild);
+                        let divElement = document.getElementById("highlighterContainer");
+                        while (divElement.firstChild){
+                            divElement.removeChild(divElement.firstChild);
+                            console.log(colorButtonContainerWidth + "," + colorButtonContainerHeight + "," + colorButtonContainerLeft, "," + colorButtonContainerTop);
+                        }
+                    }
+                }
+            }
+        }
+        
     };
 }
 class SettingsTab extends obsidian.PluginSettingTab {
