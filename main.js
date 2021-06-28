@@ -313,9 +313,9 @@ class HighlighterPopover extends obsidian.Plugin{
         });
         
         window.addEventListener('click', (e) => {
-            done(e);
+            kill(e);
         })
-        const done = (e, trigger) => {
+        const kill = (e, trigger) => {
             const mouseX = e.clientX;
             const mouseY = e.clientY;
             const colorButtonContainerWidth = colorButtonContainer.clientWidth;
@@ -331,7 +331,7 @@ class HighlighterPopover extends obsidian.Plugin{
                         let divElement = document.getElementById("highlighterContainer");
                         while (divElement.firstChild){
                             divElement.removeChild(divElement.firstChild);
-                            console.log(colorButtonContainerWidth + "," + colorButtonContainerHeight + "," + colorButtonContainerLeft, "," + colorButtonContainerTop);
+                            console.log(colorButtonContainerWidth + "," + colorButtonContainerHeight + "," + colorButtonContainerLeft + "," + colorButtonContainerTop);
                         }
                     }
                 }
