@@ -14,7 +14,7 @@ a[href="https://www.buymeacoffee.com/chetachi"]{
     position: fixed;
     z-index: var(--layer-menu);
     top: 200px;
-    left: 150px;
+    left: 500px;
     width: auto;
     height: auto;
     display: inline-block;
@@ -43,7 +43,6 @@ a[href="https://www.buymeacoffee.com/chetachi"]{
     padding: 16px;
     padding-top: 7px;
     padding-bottom: 7px;
-    display: inline-flexbox;
     cursor: pointer;
     text-align: left;
     list-style-type: none;
