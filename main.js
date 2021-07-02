@@ -76,12 +76,9 @@ var en = {
     'More Info': 'More Info',
     'Donate': 'Donate',
     'If you like this Plugin, consider donating to support continued development:': 'If you like this Plugin, consider donating to support continued development:',
-    'Here you can edit the Template for newly created Files.': 'Here you can edit the Template for newly created Files.',
-    'Click for a List of Variables': 'Click for a List of Variables',
-    'Template': 'Template',
+
     "Miscellaneous": "Miscellaneous",
 
-    'This Plugin is using <a href="https://feathericons.com/">Feather Icons</a>': 'This Plugin is using <a href="https://feathericons.com/">Feather Icons</a>',
     "Choose a Highlight Color": "Choose a Highlight Color",
     //highlighterModal
     'Pink': 'Pink',
