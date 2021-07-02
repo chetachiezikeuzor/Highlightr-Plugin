@@ -179,7 +179,7 @@ const localeMap = {
 const locale = localeMap[obsidian.moment.locale()];
 function t(str) {
     if (!locale) {
-        console.error("Error: highlightr locale not found", obsidian.moment.locale());
+        console.error("Error: locale not found", obsidian.moment.locale());
     }
     return (locale && locale[str]) || en[str];
 }
@@ -187,7 +187,7 @@ function t(str) {
 const DEFAULT_SETTINGS = {
 };
 
-var highlighterColorsMap = [ //This could be a flat object 
+var highlighterColorsMap = [ //This could be a flat object but idk
     {color: 'Pink', value: '#FFB8EB'},
     {color: 'Red', value: '#FF5582'},
     {color: 'Orange', value: '#FFB86C'},
@@ -354,21 +354,11 @@ class SettingsTab extends obsidian.PluginSettingTab {
             .setDesc(t('Coming soon...'));
         containerEl.createEl('h3', { text: t("Miscellaneous") });
         new obsidian.Setting(containerEl)
-            .setName(t('More Information'))
-            .setDesc(t('View Information about the Plugin.'))
-            .setClass("extra")
-            .addButton((bt) => {
-            bt.setButtonText(t('More Info'));
-            bt.onClick((_) => {
-                new InfoModal(plugin).open();
-            });
-        });
-        new obsidian.Setting(containerEl)
             .setName(t('Donate'))
             .setDesc(t('If you like this Plugin, consider donating to support continued development:'))
             .setClass("extra")
             .addButton((bt) => {
-            bt.buttonEl.outerHTML = `<a href="https://www.buymeacoffee.com/chetachi"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=chetachi&button_colour=e3e7ef&font_colour=000000&font_family=Inter&outline_colour=000000&coffee_colour=FFDD00"></a>`;
+            bt.buttonEl.outerHTML = `<a href="https://www.buymeacoffee.com/chetachi"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=chetachi&button_colour=1862f7&font_colour=ffffff&font_family=Inter&outline_colour=ffffff&coffee_colour=FFDD00"></a>`;
         });
     }
     save() {
@@ -380,18 +370,13 @@ class SettingsTab extends obsidian.PluginSettingTab {
 
 function handleContextMenu(menu, instance, plugin) {
     if (instance.getSelection()) {
-        if (!plugin.settings.shouldShowSynonymPopover) {
-            menu.addItem((item) => {
-                item.setTitle(t('Highlight'))
-                    .setIcon('highlightpen')
-                    .onClick((_) => __awaiter(this, void 0, void 0, function* () {
-                        plugin.handlePointerUp();
-                        //createContainer();
-                        //pickedColor();
-                        // instance.replaceSelection('<mark class="highlighter">' + instance.getSelection() + '</mark>')
-                }));
-            });
-        }
+        menu.addItem((item) => {
+            item.setTitle(t('Highlight'))
+                .setIcon('highlightpen')
+                .onClick((_) => __awaiter(this, void 0, void 0, function* () {
+                    plugin.handleHighlighter();
+            }));
+        });
         menu.addItem((item) => {
             item.setTitle(t('Unhighlight'))
                 .setIcon('eraser')
@@ -428,7 +413,7 @@ class HighlightrPlugin extends obsidian.Plugin {
                 icon: 'highlightpen',
                 onClick: (instance) => {
                     if (instance.getSelection()) {
-                        this.handlePointerUp();
+                        this.handleHighlighter();
                     }
                 },
                 enabled: true,
@@ -449,31 +434,14 @@ class HighlightrPlugin extends obsidian.Plugin {
             },
         ];
 
-        // Open the highlighter popover if a word is selected
-        // This is debounced to handle double clicks
-        this.handlePointerUp = obsidian.debounce(() => {
+        this.handleHighlighter = obsidian.debounce(() => {
             const activeLeaf = this.app.workspace.activeLeaf;
             if ((activeLeaf === null || activeLeaf === void 0 ? void 0 : activeLeaf.view) instanceof obsidian.MarkdownView) {
                 const view = activeLeaf.view;
                 if (view.getMode() === 'source') {
                     const editor = view.editor;
                     const selection = editor.getSelection();
-                    // Return early if we don't have anything selected, or if
-                    // multiple words are selected
-                    const cursor = editor.getCursor('from');
-                    const line = editor.getLine(cursor.line);
-                    let coords;
-                    // Get the cursor position using the appropriate CM5 or CM6 interface
-                    if (editor.cursorCoords) {
-                        coords = editor.cursorCoords(true, 'window');
-                    }
-                    else if (editor.coordsAtPos) {
-                        const offset = editor.posToOffset(cursor);
-                        coords = editor.coordsAtPos(offset);
-                    }
-                    else {
-                        return;
-                    }
+
                     this.highlighterPopover = new HighlighterPopover(activeLeaf, editor, this.app, this,{
 
                     });
@@ -492,18 +460,7 @@ class HighlightrPlugin extends obsidian.Plugin {
                 callback: () => {
                 },
             });
-            this.registerDomEvent(document.body, "pointerup", () => {
-                if (!this.settings.shouldShowSynonymPopover) {
-                    return;
-                }
-                this.handlePointerUp();
-            });
-            this.registerDomEvent(window, "keydown", () => {
-                // Destroy the popover if it's open
-                if (this.highlighterPopover) {
-                    this.highlighterPopover = null;
-                }
-            });
+
             this.registerEvent(this.app.workspace.on('editor-menu', (menu, editor, _) => {
                 handleContextMenu(menu, editor, this);
             }));
@@ -525,4 +482,3 @@ class HighlightrPlugin extends obsidian.Plugin {
 }
 
 module.exports = HighlightrPlugin;
-//# sourceMappingURL=main.js.map
