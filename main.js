@@ -205,11 +205,19 @@ if (newDiv){
     return;
 }
 
+var scope = document.querySelector("body");
+scope.addEventListener("contextmenu", (event) => {
+  var { clientX: mouseX, clientY: mouseY } = event;
+  newDiv.style.top = `${mouseY}px`;
+  newDiv.style.left = `${mouseX}px`;
+});
+
 class HighlighterPopover extends obsidian.Plugin{
     constructor() {
         super(...arguments);
         this.createContainer();   
     }
+    
     createContainer(){
         const activeLeaf = this.app.workspace.activeLeaf;
         
@@ -298,15 +306,6 @@ class HighlighterPopover extends obsidian.Plugin{
                     }
                 }
             }
-        });
-
-        var scope = document.querySelector("body");
-        scope.addEventListener("contextmenu", (event) => {
-        
-          var { clientX: mouseX, clientY: mouseY } = event;
-
-          colorButtonContainer.style.top = `${mouseY}px`;
-          colorButtonContainer.style.left = `${mouseX}px`;
         });
         
         window.addEventListener('click', (e) => {
@@ -440,7 +439,7 @@ class HighlightrPlugin extends obsidian.Plugin {
                     const selection = editor.getSelection();
 
                     this.highlighterPopover = new HighlighterPopover(activeLeaf, editor, this.app, this,{
-
+                        
                     });
                 }
             }
@@ -459,7 +458,13 @@ class HighlightrPlugin extends obsidian.Plugin {
             });
 
             this.registerEvent(this.app.workspace.on('editor-menu', (menu, editor, _) => {
-                handleContextMenu(menu, editor, this);
+                const offset = editor.posToOffset(editor.getCursor("from"));
+                const { bottom, left } = editor.coordsAtPos(offset);
+                const highlighterCoordinates = {
+                    x: left,
+                    y: bottom,
+                }
+                handleContextMenu(menu, editor, this, highlighterCoordinates);
             }));
         });
     }

@@ -13,10 +13,8 @@ a[href="https://www.buymeacoffee.com/chetachi"]{
 #highlighterContainer{
     position: fixed;
     z-index: var(--layer-menu);
-    top: 200px;
-    left: 500px;
-    width: auto;
-    height: auto;
+    min-width: auto;
+    min-height: auto;
     display: inline-block;
     user-select: none;
     max-height: calc(100% - 25px);
