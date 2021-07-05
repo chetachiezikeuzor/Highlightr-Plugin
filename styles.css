@@ -10,14 +10,29 @@ a[href="https://www.buymeacoffee.com/chetachi"]{
     transform: translate(0, 5%);
 }
 
+@keyframes fade {
+    0% {
+      opacity: 0;
+    }
+    20% {
+      opacity: 0.9;
+    }
+    40% {
+      opacity: 0.95;
+    }
+    100% {
+      opacity: 1;
+    }
+}
+
 #highlighterContainer{
     position: fixed;
+    width: 158px;
+    max-width: 225px;
+    max-height: 200px;
     z-index: var(--layer-menu);
-    min-width: auto;
-    min-height: auto;
     display: inline-block;
     user-select: none;
-    max-height: calc(100% - 25px);
     overflow: hidden;
 }
 
@@ -32,6 +47,7 @@ a[href="https://www.buymeacoffee.com/chetachi"]{
     overflow-y: auto;
     overflow-x: hidden;
     position: fixed;
+    animation: fade 300ms ease-in-out;
     background-color: var(--background-primary);
     box-shadow: 0px 3px 25px rgba( 31, 38, 135, 0.1 );
     border: 1px solid var(--background-modifier-border);
