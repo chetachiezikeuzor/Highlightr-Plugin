@@ -199,18 +199,35 @@ console.log('app:', app);
 
 let newDiv = document.createElement('div');
 
-if (newDiv){
-    newDiv.remove();
-} else{
-    return;
-}
+if(newDiv){
+    var scope = document.querySelector("body");
 
-var scope = document.querySelector("body");
-scope.addEventListener("contextmenu", (event) => {
-  var { clientX: mouseX, clientY: mouseY } = event;
-  newDiv.style.top = `${mouseY}px`;
-  newDiv.style.left = `${mouseX}px`;
-});
+    newDiv.setAttribute('id', 'highlighterContainer');
+
+    scope.addEventListener("contextmenu", (event) => {
+    var clientHeight = 200;
+    var clientWidth = 158;
+    var { clientX: mouseX, clientY: mouseY, } = event;
+
+    newDiv.style.top = `${mouseY}px`;
+    newDiv.style.left = `${mouseX}px`;
+
+    if (clientHeight + mouseY > window.innerHeight) {
+        newDiv.style.top = `${mouseY - clientHeight}px`;
+    } else{
+        newDiv.style.top = `${mouseY}px`;
+    }
+
+    if (clientWidth + mouseX > window.innerWidth) {
+        newDiv.style.left = `${mouseX - clientWidth}px`;
+    } else{
+        newDiv.style.left = `${mouseX}px`;
+    }
+
+    console.log(clientHeight, mouseY, window.innerWidth, (mouseX - clientWidth));
+
+    });  
+}
 
 class HighlighterPopover extends obsidian.Plugin{
     constructor() {
@@ -219,9 +236,9 @@ class HighlighterPopover extends obsidian.Plugin{
     }
     
     createContainer(){
-        const activeLeaf = this.app.workspace.activeLeaf;
+
+        const activeLeaf = this.app.workspace.activeLeaf;   
         
-        newDiv.setAttribute('id', 'highlighterContainer');
         document.body.appendChild(newDiv);    // adding element to the body.
 
         // create var for container.
@@ -254,18 +271,7 @@ class HighlighterPopover extends obsidian.Plugin{
             for(var j = 0; j < 1; j++){
                 colorButton.appendChild(colorButtonIcon);
                 colorButton.appendChild(colorButtonText);
-            }
-            
-            colorButton.addEventListener("click", function () {          
-                let ulElement = document.getElementById("highlightColorButtonList");
-                while (ulElement.firstChild) {
-                    ulElement.removeChild(ulElement.firstChild);
-                    let divElement = document.getElementById("highlighterContainer");
-                    while (divElement.firstChild){
-                        divElement.removeChild(divElement.firstChild);
-                    }
-                }
-            });
+            }  
 
             colorButtonContainer.appendChild(colorButtons);  // add list to the container.
         } 
@@ -303,6 +309,11 @@ class HighlighterPopover extends obsidian.Plugin{
                     let divElement = document.getElementById("highlighterContainer");
                     while (divElement.firstChild){
                         divElement.removeChild(divElement.firstChild);
+                        if (newDiv){
+                            newDiv.remove();
+                        } else{
+                            return;
+                        }
                     }
                 }
             }
@@ -312,6 +323,7 @@ class HighlighterPopover extends obsidian.Plugin{
             kill(e);
         })
         const kill = (e, trigger) => {
+
             const mouseX = e.clientX;
             const mouseY = e.clientY;
             const colorButtonContainerWidth = colorButtonContainer.clientWidth;
@@ -323,10 +335,16 @@ class HighlighterPopover extends obsidian.Plugin{
                 let ulElement = document.getElementById("highlightColorButtonList");
                 if(ulElement){
                     if (ulElement.firstChild) {
+
                         ulElement.removeChild(ulElement.firstChild);
                         let divElement = document.getElementById("highlighterContainer");
                         while (divElement.firstChild){
                             divElement.removeChild(divElement.firstChild);
+                            if (newDiv){
+                                newDiv.remove();
+                            } else{
+                                return;
+                            }
                             console.log(colorButtonContainerWidth + "," + colorButtonContainerHeight + "," + colorButtonContainerLeft + "," + colorButtonContainerTop);
                         }
                     }
