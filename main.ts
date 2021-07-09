@@ -11,162 +11,170 @@ interface MyPluginSettings {
     mySetting: string;
 }
 
-const DEFAULT_SETTINGS: MyPluginSettings = {
-    mySetting: "default",
-};
+class Translator {
+    languages = {
+        /**
+         * Transform the case in `value` (`string`) to match that of `base` (`string`).
+         *
+         * @param {string} value
+         * @param {string} base
+         * @returns {string}
+         */
 
-class translator {
-languages={
-/**
- * Transform the case in `value` (`string`) to match that of `base` (`string`).
- *
- * @param {string} value
- * @param {string} base
- * @returns {string}
- */
+        // العربية
+        ar: {},
 
-// العربية
- ar: {},
+        // čeština
+        cz: {},
 
-// čeština
- cz: {},
+        // Dansk
+        da: {},
 
-// Dansk
- da: {},
+        // Deutsch
+        de: {},
 
-// Deutsch
- de: {},
+        // English
+        en: {
+            //main
+            "Highlight Text": "Highlight Text",
+            "Unhighlight Text": "Unhighlight Text",
+            //_constants.ts
+            Highlightr: "Highlightr",
+            //added to Context Menu
+            Highlight: "Highlight",
+            Unhighlight: "Unhighlight",
+            //settingsTab.ts
+            "Highlightr Settings": "Highlightr Settings",
+            "Click ": "Click ",
+            here: "here",
+            "Pick Highlighter Style": "Pick Highlighter Style",
+            "Coming soon...": "Coming soon...",
+            "Click Here": "Click Here",
+            "More Information": "More Information",
+            "View Information about the Plugin.":
+                "View Information about the Plugin.",
+            "More Info": "More Info",
+            Donate: "Donate",
+            "If you like this Plugin, consider donating to support continued development:":
+                "If you like this Plugin, consider donating to support continued development:",
 
-// English
-en: {
-    //main
-    "Highlight Text": "Highlight Text",
-    "Unhighlight Text": "Unhighlight Text",
-    //_constants.ts
-    Highlightr: "Highlightr",
-    //added to Context Menu
-    Highlight: "Highlight",
-    Unhighlight: "Unhighlight",
-    //settingsTab.ts
-    "Highlightr Settings": "Highlightr Settings",
-    "Click ": "Click ",
-    here: "here",
-    "Pick Highlighter Style": "Pick Highlighter Style",
-    "Coming soon...": "Coming soon...",
-    "Click Here": "Click Here",
-    "More Information": "More Information",
-    "View Information about the Plugin.": "View Information about the Plugin.",
-    "More Info": "More Info",
-    Donate: "Donate",
-    "If you like this Plugin, consider donating to support continued development:":
-        "If you like this Plugin, consider donating to support continued development:",
+            Miscellaneous: "Miscellaneous",
 
-    Miscellaneous: "Miscellaneous",
+            "Choose a Highlight Color": "Choose a Highlight Color",
+            //highlighterModal
+            Pink: "Pink",
+            Red: "Red",
+            Orange: "Orange",
+            Yellow: "Yellow",
+            Green: "Green",
+            Blue: "Blue",
+            Purple: "Purple",
+        },
 
-    "Choose a Highlight Color": "Choose a Highlight Color",
-    //highlighterModal
-    Pink: "Pink",
-    Red: "Red",
-    Orange: "Orange",
-    Yellow: "Yellow",
-    Green: "Green",
-    Blue: "Blue",
-    Purple: "Purple",
-},
+        // British English
+        enGB: {},
 
-// British English
- enGB : {},
+        // Español
+        es: {},
 
-// Español
- es: {},
+        // français
+        fr: {},
 
-// français
-fr: {},
+        // हिन्दी
+        hi: {},
 
-// हिन्दी
- hi: {},
+        // Bahasa Indonesia
+        id: {},
 
-// Bahasa Indonesia
- id :{},
+        // Italiano
+        it: {},
 
-// Italiano
- it: {},
+        // 日本語
+        ja: {},
 
-// 日本語
- ja: {},
+        // 한국어
+        ko: {},
 
-// 한국어
- ko: {},
+        // Nederlands
+        nl: {},
 
-// Nederlands
- nl : {},
+        // Norsk
+        no: {},
 
-// Norsk
- no: {},
+        // język polski
+        pl: {},
 
-// język polski
- pl : {},
+        // Português
+        pt: {},
 
-// Português
- pt : {},
+        // Português do Brasil
+        // Brazilian Portuguese
+        ptBR: {},
 
-// Português do Brasil
-// Brazilian Portuguese
- ptBR : {},
+        // Română
+        ro: {},
 
-// Română
- ro: {},
+        // русский
+        ru: {},
 
-// русский
- ru: {},
+        // Türkçe
+        tr: {},
 
-// Türkçe
- tr : {},
+        // 简体中文
+        zhCN: {},
 
-// 简体中文
- zhCN : {},
+        // 繁體中文
+        zhTW: {},
+    };
 
-// 繁體中文
- zhTW : {},
-}
- localeMap : {
-    ar,
-    cs: cz,
-    da,
-    de,
-    en,
-    "en-gb": enGB,
-    es,
-    fr,
-    hi,
-    id,
-    it,
-    ja,
-    ko,
-    nl,
-    nn: no,
-    pl,
-    pt,
-    "pt-br": ptBR,
-    ro,
-    ru,
-    tr,
-    "zh-cn": zhCN,
-    "zh-tw": zhTW,
-}
+    localeMap = {
+        ar: this.languages.ar,
+        cs: this.languages.cz,
+        da: this.languages.da,
+        de: this.languages.de,
+        en: this.languages.en,
+        "en-gb": this.languages.enGB,
+        es: this.languages.es,
+        fr: this.languages.fr,
+        hi: this.languages.hi,
+        id: this.languages.id,
+        it: this.languages.it,
+        ja: this.languages.ja,
+        ko: this.languages.ko,
+        nl: this.languages.nl,
+        nn: this.languages.no,
+        pl: this.languages.pl,
+        pt: this.languages.pt,
+        "pt-br": this.languages.ptBR,
+        ro: this.languages.ro,
+        ru: this.languages.ru,
+        tr: this.languages.tr,
+        "zh-cn": this.languages.zhCN,
+        "zh-tw": this.languages.zhTW,
+    };
 
- locale = this.localeMap[obsidian.moment.locale()];
+    // @ts-ignore
+    locale = this.localeMap[obsidian.moment.locale()];
 
- translateIt(str) {
-    if (!locale) {
-        console.error("Error: locale not found", obsidian.moment.locale());
+    translateIt(str) {
+        if (!locale) {
+            console.error("Error: locale not found", obsidian.moment.locale());
+        }
+        return (locale && locale[str]) || en[str];
     }
-    return (locale && locale[str]) || en[str];
 }
 
-
-
-}
+var highlighterColorsMap = [
+    //This could be a flat object but idk
+    { color: "Pink", value: "#FFB8EB" },
+    { color: "Red", value: "#FF5582" },
+    { color: "Orange", value: "#FFB86C" },
+    { color: "Yellow", value: "#FFF3A3" },
+    { color: "Green", value: "#BBFABB" },
+    { color: "Blue", value: "#ADCCFF" },
+    { color: "Purple", value: "#D2B3FF" },
+    { color: "Grey", value: "#CACFD9" },
+];
 
 export default class HighlighterPlugin extends Plugin {
     settings: MyPluginSettings;
@@ -186,9 +194,7 @@ export default class HighlighterPlugin extends Plugin {
             menu.addItem((item) => {
                 item.setTitle(t("Highlight"))
                     .setIcon("highlightpen")
-                    .onClick(async (_) =>
-                          await   plugin.handleHighlighter();
-                    );
+                    .onClick(async (_) => await plugin.handleHighlighter());
             });
             menu.addItem((item) => {
                 item.setTitle(t("Unhighlight"))
@@ -425,45 +431,39 @@ export default class HighlighterPlugin extends Plugin {
         });
     }
     onload() {
-            console.log("Loading Highlightr");
-            yield this.loadSettings();
-            addIcons();
-            this.addSettingTab(new SettingsTab(this.app, this));
-            this.addCommand({
-                name: t("Highlight Text"),
-                callback: () => {},
-            });
+        console.log("Loading Highlightr");
+        yield this.loadSettings();
+        addIcons();
+        this.addSettingTab(new SettingsTab(this.app, this));
+        this.addCommand({
+            name: t("Highlight Text"),
+            callback: () => {},
+        });
 
-            this.registerEvent(
-                this.app.workspace.on("editor-menu", (menu, editor, _) => {
-                    const offset = editor.posToOffset(editor.getCursor("from"));
-                    const { bottom, left } = editor.coordsAtPos(offset);
-                    const highlighterCoordinates = {
-                        x: left,
-                        y: bottom,
-                    };
-                    handleContextMenu(
-                        menu,
-                        editor,
-                        this,
-                        highlighterCoordinates
-                    );
-                })
-            );
-
+        this.registerEvent(
+            this.app.workspace.on("editor-menu", (menu, editor, _) => {
+                const offset = editor.posToOffset(editor.getCursor("from"));
+                const { bottom, left } = editor.coordsAtPos(offset);
+                const highlighterCoordinates = {
+                    x: left,
+                    y: bottom,
+                };
+                handleContextMenu(menu, editor, this, highlighterCoordinates);
+            })
+        );
     }
     onunload() {
         console.log("Unloading Highlightr");
     }
     async loadSettings() {
-            this.settings = Object.assign(
-                {},
-                DEFAULT_SETTINGS,
-                await this.loadData()
-            );
+        this.settings = Object.assign(
+            {},
+            DEFAULT_SETTINGS,
+            await this.loadData()
+        );
     }
     async saveSettings() {
-            await this.saveData(this.settings);
+        await this.saveData(this.settings);
     }
 }
 
@@ -493,6 +493,6 @@ class HighlightrPluginSettingsTab extends obsidian.PluginSettingTab {
             });
     }
     async save() {
-            await this.plugin.saveSettings();
+        await this.plugin.saveSettings();
     }
 }

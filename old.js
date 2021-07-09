@@ -22,20 +22,6 @@ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 
-const DEFAULT_SETTINGS = {};
-
-var highlighterColorsMap = [
-    //This could be a flat object but idk
-    { color: "Pink", value: "#FFB8EB" },
-    { color: "Red", value: "#FF5582" },
-    { color: "Orange", value: "#FFB86C" },
-    { color: "Yellow", value: "#FFF3A3" },
-    { color: "Green", value: "#BBFABB" },
-    { color: "Blue", value: "#ADCCFF" },
-    { color: "Purple", value: "#D2B3FF" },
-    { color: "Grey", value: "#CACFD9" },
-];
-
 console.log("app:", app);
 
 let newDiv = document.createElement("div");
