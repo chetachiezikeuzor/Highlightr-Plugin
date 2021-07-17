@@ -6,4 +6,4 @@ https://user-images.githubusercontent.com/79069364/125131923-34928d00-e0c9-11eb-
 
 ![](https://github.com/chetachiezikeuzor/Highlightr-Plugin/blob/master/assets/highlightr.png)
 
-<a href="https://www.buymeacoffee.com/chetachi"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=chetachi&button_colour=e3e7ef&font_colour=000000&font_family=Inter&outline_colour=000000&coffee_colour=FFDD00"></a>
+<a href="https://www.buymeacoffee.com/chetachi"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&amp;emoji=&amp;slug=chetachi&amp;button_colour=e3e7ef&amp;font_colour=262626&amp;font_family=Inter&amp;outline_colour=262626&amp;coffee_colour=ff0000"></a>
