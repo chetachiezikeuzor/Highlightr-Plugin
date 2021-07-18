@@ -68,3 +68,10 @@ a[href="https://www.buymeacoffee.com/chetachi"]
 #highlightColorButtonList li:last-child {
   border-bottom: none;
 }
+
+.cDonationSection {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--text-normal);
+}
