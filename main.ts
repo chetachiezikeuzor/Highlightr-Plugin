@@ -73,10 +73,9 @@ var en = {
   "View Information about the Plugin.": "View Information about the Plugin.",
   "More Info": "More Info",
   Donate: "Donate",
-  "If you like this Plugin, consider donating to support continued development:":
-    "If you like this Plugin, consider donating to support continued development:",
-
-  Miscellaneous: "Miscellaneous",
+  "If you like this Plugin and are considering donating to support continued development, use the button below!":
+    "If you like this Plugin and are considering donating to support continued development, use the button below!",
+  "Created with ❤️ by Chetachi": "Created with ❤️ by Chetachi",
 
   "Choose a Highlight Color": "Choose a Highlight Color",
   //highlighterModal
@@ -379,18 +378,26 @@ class SettingsTab extends obsidian.PluginSettingTab {
     new obsidian.Setting(containerEl)
       .setName(t("Pick Highlighter Style"))
       .setDesc(t("Coming soon..."));
-    containerEl.createEl("h3", { text: t("Miscellaneous") });
-    new obsidian.Setting(containerEl)
-      .setName(t("Donate"))
-      .setDesc(
-        t(
-          "If you like this Plugin, consider donating to support continued development:"
-        )
+
+    const div = containerEl.createEl("div", {
+      cls: "cDonationSection",
+    });
+
+    const credit = document.createElement("p");
+    const donateText = document.createElement("p");
+    donateText.appendText(
+      t(
+        "If you like this Plugin and are considering donating to support continued development, use the button below!"
       )
-      .setClass("extra")
-      .addButton((bt) => {
-        bt.buttonEl.outerHTML = `<a href="https://www.buymeacoffee.com/chetachi"><img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=chetachi&button_colour=1862f7&font_colour=ffffff&font_family=Inter&outline_colour=ffffff&coffee_colour=FFDD00"></a>`;
-      });
+    );
+    credit.appendText(t("Created with ❤️ by Chetachi"));
+    credit.setAttribute("style", "color: var(--text-muted)");
+    div.appendChild(donateText);
+    div.appendChild(credit);
+
+    div.appendChild(
+      createDonateButton("https://www.buymeacoffee.com/chetachi")
+    );
   }
   save() {
     return __awaiter(this, void 0, void 0, function* () {
@@ -398,6 +405,14 @@ class SettingsTab extends obsidian.PluginSettingTab {
     });
   }
 }
+
+const createDonateButton = (link: string): HTMLElement => {
+  const a = document.createElement("a");
+  a.setAttribute("href", link);
+  a.addClass("advanced-tables-donate-button");
+  a.innerHTML = `<img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=chetachi&button_colour=e3e7ef&font_colour=262626&font_family=Inter&outline_colour=262626&coffee_colour=ff0000">`;
+  return a;
+};
 
 function handleContextMenu(
   menu: Menu,
