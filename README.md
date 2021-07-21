@@ -8,7 +8,7 @@ https://user-images.githubusercontent.com/79069364/125131923-34928d00-e0c9-11eb-
 
 ### Ease of Use
 
-Make beautiful highlights in your notes to supplement your note-taking workflow. The colors included were chosen to for universal use across themes, in both light and dark mode.
+Make beautiful highlights in your notes to supplement your note-taking workflow. The colors included were chosen for universal use across themes, in both light and dark mode.
 
 ### How it Works
 
