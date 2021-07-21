@@ -4,7 +4,7 @@ Highlightr is a simple plugin that brings a minimal and aesthetically pleasing h
 
 ### Demo
 
-https://user-images.githubusercontent.com/79069364/125131923-34928d00-e0c9-11eb-95f7-19b8babac44e.mp4
+![](https://github.com/chetachiezikeuzor/Highlightr-Plugin/blob/master/assets/highlightr-demo.gif)
 
 ### Ease of Use
 
