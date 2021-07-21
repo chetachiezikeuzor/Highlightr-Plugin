@@ -1,10 +1,10 @@
 {
-	"id": "Highlightr-Plugin",
-	"name": "Highlightr",
-	"version": "0.0.1",
-	"minAppVersion": "0.0.0",
-	"description": "This is a simple highlighter plugin for the Obsidian Note-Taking Tool.",
-	"author": "chetachi",
-	"authorUrl": "https://github.com/chetachiezikeuzor",
-	"isDesktopOnly": false
+  "id": "Highlightr-Plugin",
+  "name": "Highlightr",
+  "version": "0.0.1",
+  "minAppVersion": "0.0.0",
+  "description": "Highlightr is a plugin that adds a simple highlighting modal for better multi-colored highlighting support 🎨.",
+  "author": "chetachi",
+  "authorUrl": "https://github.com/chetachiezikeuzor",
+  "isDesktopOnly": false
 }

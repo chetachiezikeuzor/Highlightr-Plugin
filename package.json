@@ -1,7 +1,7 @@
 {
   "name": "highlightr-plugin",
   "version": "0.0.1",
-  "description": "This is a highlighter for Obsidian (https://obsidian.md)",
+  "description": "Highlightr is a plugin that adds a simple highlighting modal for better multi-colored highlighting support 🎨.",
   "main": "main.js",
   "scripts": {
     "dev": "rollup --config rollup.config.js -w",
