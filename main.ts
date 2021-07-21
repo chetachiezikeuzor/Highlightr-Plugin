@@ -409,7 +409,8 @@ class SettingsTab extends obsidian.PluginSettingTab {
 const createDonateButton = (link: string): HTMLElement => {
   const a = document.createElement("a");
   a.setAttribute("href", link);
-  a.innerHTML = `<img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=chetachi&button_colour=e3e7ef&font_colour=262626&font_family=Inter&outline_colour=262626&coffee_colour=ff0000">`;
+  a.addClass("buymeacoffee-chetachi-img");
+  a.innerHTML = `<img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=chetachi&button_colour=e3e7ef&font_colour=262626&font_family=Inter&outline_colour=262626&coffee_colour=ff0000" height="36px">`;
   return a;
 };
 
