@@ -1,5 +1,7 @@
 # Highlightr-Plugin
 
+Highlightr is a simple plugin that brings a minimal and aesthetically pleasing highlighting modal into the app. This plugin makes color-coded highlighting much easier with a user-friendly assortment of highlight colors.
+
 ### Demo
 
 https://user-images.githubusercontent.com/79069364/125131923-34928d00-e0c9-11eb-95f7-19b8babac44e.mp4
