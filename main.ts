@@ -32,151 +32,6 @@ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 
-/**
- * Transform the case in `value` (`string`) to match that of `base` (`string`).
- *
- * @param {string} value
- * @param {string} base
- * @returns {string}
- */
-
-// العربية
-var ar = {};
-
-// čeština
-var cz = {};
-
-// Dansk
-var da = {};
-
-// Deutsch
-var de = {};
-
-// English
-var en = {
-  //main
-  "Highlight Text": "Highlight Text",
-  "Unhighlight Text": "Unhighlight Text",
-  //_constants.ts
-  Highlightr: "Highlightr",
-  //added to Context Menu
-  Highlight: "Highlight",
-  Unhighlight: "Unhighlight",
-  //settingsTab.ts
-  "Highlightr Settings": "Highlightr Settings",
-  "Click ": "Click ",
-  here: "here",
-  "Pick Highlighter Style": "Pick Highlighter Style",
-  "Coming soon...": "Coming soon...",
-  "Click Here": "Click Here",
-  "More Information": "More Information",
-  "View Information about the Plugin.": "View Information about the Plugin.",
-  "More Info": "More Info",
-  Donate: "Donate",
-  "If you like this Plugin and are considering donating to support continued development, use the button below!":
-    "If you like this Plugin and are considering donating to support continued development, use the button below!",
-  "Created with ❤️ by Chetachi": "Created with ❤️ by Chetachi",
-
-  "Choose a Highlight Color": "Choose a Highlight Color",
-  //highlighterModal
-  Pink: "Pink",
-  Red: "Red",
-  Orange: "Orange",
-  Yellow: "Yellow",
-  Green: "Green",
-  Blue: "Blue",
-  Purple: "Purple",
-};
-
-// British English
-var enGB = {};
-
-// Español
-var es = {};
-
-// français
-var fr = {};
-
-// हिन्दी
-var hi = {};
-
-// Bahasa Indonesia
-var id = {};
-
-// Italiano
-var it = {};
-
-// 日本語
-var ja = {};
-
-// 한국어
-var ko = {};
-
-// Nederlands
-var nl = {};
-
-// Norsk
-var no = {};
-
-// język polski
-var pl = {};
-
-// Português
-var pt = {};
-
-// Português do Brasil
-// Brazilian Portuguese
-var ptBR = {};
-
-// Română
-var ro = {};
-
-// русский
-var ru = {};
-
-// Türkçe
-var tr = {};
-
-// 简体中文
-var zhCN = {};
-
-// 繁體中文
-var zhTW = {};
-
-const localeMap = {
-  ar,
-  cs: cz,
-  da,
-  de,
-  en,
-  "en-gb": enGB,
-  es,
-  fr,
-  hi,
-  id,
-  it,
-  ja,
-  ko,
-  nl,
-  nn: no,
-  pl,
-  pt,
-  "pt-br": ptBR,
-  ro,
-  ru,
-  tr,
-  "zh-cn": zhCN,
-  "zh-tw": zhTW,
-};
-
-const locale = localeMap[obsidian.moment.locale()];
-function t(str: string) {
-  if (!locale) {
-    console.error("Error: locale not found", obsidian.moment.locale());
-  }
-  return (locale && locale[str]) || en[str];
-}
-
 const DEFAULT_SETTINGS = {};
 
 var highlighterColorsMap = [
@@ -374,10 +229,10 @@ class SettingsTab extends obsidian.PluginSettingTab {
   display() {
     const { containerEl, plugin } = this;
     containerEl.empty();
-    containerEl.createEl("h2", { text: t("Highlightr Settings") });
+    containerEl.createEl("h2", { text: "Highlightr Settings" });
     new obsidian.Setting(containerEl)
-      .setName(t("Pick Highlighter Style"))
-      .setDesc(t("Coming soon..."));
+      .setName("Pick Highlighter Style")
+      .setDesc("Coming soon...");
 
     const div = containerEl.createEl("div", {
       cls: "cDonationSection",
@@ -386,11 +241,9 @@ class SettingsTab extends obsidian.PluginSettingTab {
     const credit = document.createElement("p");
     const donateText = document.createElement("p");
     donateText.appendText(
-      t(
-        "If you like this Plugin and are considering donating to support continued development, use the button below!"
-      )
+      "If you like this Plugin and are considering donating to support continued development, use the button below!"
     );
-    credit.appendText(t("Created with ❤️ by Chetachi"));
+    credit.appendText("Created with ❤️ by Chetachi");
     credit.setAttribute("style", "color: var(--text-muted)");
     div.appendChild(donateText);
     div.appendChild(credit);
@@ -422,7 +275,7 @@ function handleContextMenu(
   if (instance.getSelection()) {
     menu.addItem((item) => {
       item
-        .setTitle(t("Highlight"))
+        .setTitle("Highlight")
         .setIcon("highlightpen")
         .onClick((_) =>
           __awaiter(this, void 0, void 0, function* () {
@@ -432,7 +285,7 @@ function handleContextMenu(
     });
     menu.addItem((item) => {
       item
-        .setTitle(t("Unhighlight"))
+        .setTitle("Unhighlight")
         .setIcon("eraser")
         .onClick((_) => {
           if (instance.getSelection()) {
@@ -463,7 +316,7 @@ export default class HighlightrPlugin extends obsidian.Plugin {
     this.menus = [
       {
         pluginName: this.manifest.id,
-        name: t("Highlight"),
+        name: "Highlight",
         icon: "highlightpen",
         onClick: (instance: CodeMirror.Editor): void => {
           if (instance.getSelection()) {
@@ -474,7 +327,7 @@ export default class HighlightrPlugin extends obsidian.Plugin {
       },
       {
         pluginName: this.manifest.id,
-        name: t("Unhighlight"),
+        name: "Unhighlight",
         icon: "eraser",
         onClick: (instance: CodeMirror.Editor): void => {
           if (instance.getSelection()) {
@@ -512,7 +365,7 @@ export default class HighlightrPlugin extends obsidian.Plugin {
       addIcons();
       this.addSettingTab(new SettingsTab(this.app, this));
       this.addCommand({
-        name: t("Highlight Text"),
+        name: "Highlight Text",
         callback: () => {},
       });
 
