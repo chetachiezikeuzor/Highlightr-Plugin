@@ -10,7 +10,7 @@ Highlightr is a simple plugin that brings a minimal and aesthetically pleasing h
 
 ### Ease of Use
 
-Make beautiful highlights in your notes to supplement your note-taking workflow. The colors included were chosen for universal use across themes, in both light and dark mode.
+Make beautiful highlights in your notes to supplement your note-taking workflow. The colors included were chosen for universal use across themes, in both light and dark mode. The use of inline CSS is essential in maintaining the longevity of your notes. When you export, you will not be reliant on any external CSS styling. This will make your notes much more flexible!
 
 ### How it Works
 
