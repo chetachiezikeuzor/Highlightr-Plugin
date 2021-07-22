@@ -25,31 +25,40 @@ function positionHighlightr() {
 
   document.body.appendChild(newDiv); // adding element to the body.
 
-  if (newDiv) {
-    var scope = document.querySelector("body");
+  var scope = document.querySelector("body");
 
-    newDiv.setAttribute("id", "highlighterContainer");
+  newDiv.setAttribute("id", "highlighterContainer");
 
-    scope.addEventListener("contextmenu", (event) => {
-      var clientHeight = 200;
-      var clientWidth = 158;
-      var { clientX: mouseX, clientY: mouseY } = event;
+  scope.addEventListener("contextmenu", (event) => {
+    var clientHeight = 200;
+    var clientWidth = 158;
+    var { clientX: mouseX, clientY: mouseY } = event;
 
-      newDiv.style.top = `${mouseY}px`;
+    newDiv.style.top = `${mouseY}px`;
+    newDiv.style.left = `${mouseX}px`;
+
+    if (clientHeight + mouseY > window.innerHeight) {
+      newDiv.style.top = `${mouseY - clientHeight}px`;
+    } else {
+      newDiv.style.top = `${mouseY + 5}px`;
+    }
+
+    if (clientWidth + mouseX > window.innerWidth) {
+      newDiv.style.left = `${mouseX - clientWidth}px`;
+    } else {
       newDiv.style.left = `${mouseX}px`;
+    }
+  });
+}
 
-      if (clientHeight + mouseY > window.innerHeight) {
-        newDiv.style.top = `${mouseY - clientHeight}px`;
-      } else {
-        newDiv.style.top = `${mouseY + 5}px`;
-      }
-
-      if (clientWidth + mouseX > window.innerWidth) {
-        newDiv.style.left = `${mouseX - clientWidth}px`;
-      } else {
-        newDiv.style.left = `${mouseX}px`;
-      }
-    });
+function killHighlightr() {
+  let ulElement = document.getElementById("highlightColorButtonList");
+  if (ulElement) {
+    ulElement.remove();
+  }
+  let divElement = document.getElementById("highlighterContainer");
+  if (divElement) {
+    divElement.remove();
   }
 }
 
@@ -132,22 +141,6 @@ class HighlighterPopover extends obsidian.Plugin {
             selection +
             "</mark>"
         );
-
-        let ulElement = document.getElementById("highlightColorButtonList");
-        if (ulElement) {
-          if (ulElement.firstChild) {
-            ulElement.removeChild(ulElement.firstChild);
-            let divElement = document.getElementById("highlighterContainer");
-            while (divElement.firstChild) {
-              divElement.removeChild(divElement.firstChild);
-              if (divElement) {
-                divElement.remove();
-              } else {
-                return;
-              }
-            }
-          }
-        }
       });
 
     window.addEventListener("click", (e) => {
@@ -250,6 +243,7 @@ function handleContextMenu(
         .onClick((_) =>
           __awaiter(this, void 0, void 0, function* () {
             positionHighlightr();
+
             plugin.handleHighlighter();
           })
         );
@@ -291,6 +285,7 @@ export default class HighlightrPlugin extends obsidian.Plugin {
         icon: "highlightpen",
         onClick: (instance: CodeMirror.Editor): void => {
           if (instance.getSelection()) {
+            positionHighlightr();
             this.handleHighlighter();
           }
         },
@@ -349,6 +344,7 @@ export default class HighlightrPlugin extends obsidian.Plugin {
     });
   }
   onunload() {
+    killHighlightr();
     console.log("Unloading Highlightr");
   }
   loadSettings() {
