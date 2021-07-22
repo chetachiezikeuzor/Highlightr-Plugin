@@ -1,5 +1,7 @@
 # Highlightr-Plugin
 
+![](https://github.com/chetachiezikeuzor/Highlightr-Plugin/blob/master/assets/Highlightr%20Demo%20Header.png)
+
 Highlightr is a simple plugin that brings a minimal and aesthetically pleasing highlighting modal into the app. This plugin makes color-coded highlighting much easier with a user-friendly assortment of highlight colors.
 
 ### Demo
