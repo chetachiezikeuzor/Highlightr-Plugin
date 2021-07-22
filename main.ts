@@ -1,201 +1,10 @@
-import { triggerAsyncId } from "async_hooks";
-import {
-  debounce,
-  Editor,
-  MarkdownView,
-  Plugin,
-  App,
-  Setting,
-  PluginManifest,
-  WorkspaceLeaf,
-  Menu,
-} from "obsidian";
+import { Editor, App, PluginManifest, WorkspaceLeaf, Menu } from "obsidian";
 
 import { __awaiter } from "tslib";
 
 ("use strict");
-<<<<<<< HEAD
 
 var obsidian = require("obsidian");
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation.
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
-***************************************************************************** */
-=======
-
-var obsidian = require("obsidian");
-
-/*! *****************************************************************************
-Copyright (c) Microsoft Corporation.
-
-Permission to use, copy, modify, and/or distribute this software for any
-purpose with or without fee is hereby granted.
-
-THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
-REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
-AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
-INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
-LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
-OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
-PERFORMANCE OF THIS SOFTWARE.
-***************************************************************************** */
-
-/**
- * Transform the case in `value` (`string`) to match that of `base` (`string`).
- *
- * @param {string} value
- * @param {string} base
- * @returns {string}
- */
-
-// العربية
-var ar = {};
-
-// čeština
-var cz = {};
-
-// Dansk
-var da = {};
-
-// Deutsch
-var de = {};
-
-// English
-var en = {
-  //main
-  "Highlight Text": "Highlight Text",
-  "Unhighlight Text": "Unhighlight Text",
-  //_constants.ts
-  Highlightr: "Highlightr",
-  //added to Context Menu
-  Highlight: "Highlight",
-  Unhighlight: "Unhighlight",
-  //settingsTab.ts
-  "Highlightr Settings": "Highlightr Settings",
-  "Click ": "Click ",
-  here: "here",
-  "Pick Highlighter Style": "Pick Highlighter Style",
-  "Coming soon...": "Coming soon...",
-  "Click Here": "Click Here",
-  "More Information": "More Information",
-  "View Information about the Plugin.": "View Information about the Plugin.",
-  "More Info": "More Info",
-  Donate: "Donate",
-  "If you like this Plugin and are considering donating to support continued development, use the button below!":
-    "If you like this Plugin and are considering donating to support continued development, use the button below!",
-  "Created with ❤️ by Chetachi": "Created with ❤️ by Chetachi",
-
-  "Choose a Highlight Color": "Choose a Highlight Color",
-  //highlighterModal
-  Pink: "Pink",
-  Red: "Red",
-  Orange: "Orange",
-  Yellow: "Yellow",
-  Green: "Green",
-  Blue: "Blue",
-  Purple: "Purple",
-};
-
-// British English
-var enGB = {};
-
-// Español
-var es = {};
-
-// français
-var fr = {};
-
-// हिन्दी
-var hi = {};
-
-// Bahasa Indonesia
-var id = {};
-
-// Italiano
-var it = {};
-
-// 日本語
-var ja = {};
-
-// 한국어
-var ko = {};
-
-// Nederlands
-var nl = {};
-
-// Norsk
-var no = {};
-
-// język polski
-var pl = {};
-
-// Português
-var pt = {};
-
-// Português do Brasil
-// Brazilian Portuguese
-var ptBR = {};
-
-// Română
-var ro = {};
-
-// русский
-var ru = {};
-
-// Türkçe
-var tr = {};
-
-// 简体中文
-var zhCN = {};
-
-// 繁體中文
-var zhTW = {};
-
-const localeMap = {
-  ar,
-  cs: cz,
-  da,
-  de,
-  en,
-  "en-gb": enGB,
-  es,
-  fr,
-  hi,
-  id,
-  it,
-  ja,
-  ko,
-  nl,
-  nn: no,
-  pl,
-  pt,
-  "pt-br": ptBR,
-  ro,
-  ru,
-  tr,
-  "zh-cn": zhCN,
-  "zh-tw": zhTW,
-};
-
-const locale = localeMap[obsidian.moment.locale()];
-function t(str: string) {
-  if (!locale) {
-    console.error("Error: locale not found", obsidian.moment.locale());
-  }
-  return (locale && locale[str]) || en[str];
-}
->>>>>>> bba3ae26f4aa25e3edc3fe52af646d74dfcbfb39
 
 const DEFAULT_SETTINGS = {};
 
@@ -211,34 +20,37 @@ var highlighterColorsMap = [
   { color: "Grey", value: "#CACFD9" },
 ];
 
-let newDiv = document.createElement("div");
+function positionHighlightr() {
+  let newDiv = document.createElement("div");
 
-if (newDiv) {
-  var scope = document.querySelector("body");
+  document.body.appendChild(newDiv); // adding element to the body.
 
-  newDiv.setAttribute("id", "highlighterContainer");
+  if (newDiv) {
+    var scope = document.querySelector("body");
 
-  scope.addEventListener("contextmenu", (event) => {
-    var clientHeight = 200;
-    var clientWidth = 158;
-    var { clientX: mouseX, clientY: mouseY } = event;
+    newDiv.setAttribute("id", "highlighterContainer");
 
-    newDiv.style.top = `${mouseY}px`;
-    newDiv.style.left = `${mouseX}px`;
+    scope.addEventListener("contextmenu", (event) => {
+      var clientHeight = 200;
+      var clientWidth = 158;
+      var { clientX: mouseX, clientY: mouseY } = event;
 
-    if (clientHeight + mouseY > window.innerHeight) {
-      newDiv.style.top = `${mouseY - clientHeight}px`;
-    } else {
-      newDiv.style.top = `${mouseY + 5}px`;
-<<<<<<< HEAD
-    }
-
-    if (clientWidth + mouseX > window.innerWidth) {
-      newDiv.style.left = `${mouseX - clientWidth}px`;
-    } else {
+      newDiv.style.top = `${mouseY}px`;
       newDiv.style.left = `${mouseX}px`;
-    }
-  });
+
+      if (clientHeight + mouseY > window.innerHeight) {
+        newDiv.style.top = `${mouseY - clientHeight}px`;
+      } else {
+        newDiv.style.top = `${mouseY + 5}px`;
+      }
+
+      if (clientWidth + mouseX > window.innerWidth) {
+        newDiv.style.left = `${mouseX - clientWidth}px`;
+      } else {
+        newDiv.style.left = `${mouseX}px`;
+      }
+    });
+  }
 }
 
 class HighlighterPopover extends obsidian.Plugin {
@@ -250,8 +62,6 @@ class HighlighterPopover extends obsidian.Plugin {
   createContainer() {
     const activeLeaf = this.app.workspace.activeLeaf;
 
-    document.body.appendChild(newDiv); // adding element to the body.
-
     // create var for container.
     var colorButtonContainer = document.getElementById("highlighterContainer");
 
@@ -259,44 +69,6 @@ class HighlighterPopover extends obsidian.Plugin {
     var colorButtons = document.createElement("ul");
     colorButtons.setAttribute("id", "highlightColorButtonList");
 
-    colorButtons.addEventListener("mousedown", function (event) {
-      event.preventDefault();
-    });
-
-=======
-    }
-
-    if (clientWidth + mouseX > window.innerWidth) {
-      newDiv.style.left = `${mouseX - clientWidth}px`;
-    } else {
-      newDiv.style.left = `${mouseX}px`;
-    }
-  });
-}
-
-class HighlighterPopover extends obsidian.Plugin {
-  constructor(activeLeaf: WorkspaceLeaf, editor: Editor) {
-    super(activeLeaf, editor);
-    this.createContainer();
-  }
-
-  createContainer() {
-    const activeLeaf = this.app.workspace.activeLeaf;
-
-    document.body.appendChild(newDiv); // adding element to the body.
-
-    // create var for container.
-    var colorButtonContainer = document.getElementById("highlighterContainer");
-
-    // create ul element and set the id attribute.
-    var colorButtons = document.createElement("ul");
-    colorButtons.setAttribute("id", "highlightColorButtonList");
-
-    colorButtons.addEventListener("mousedown", function (event) {
-      event.preventDefault();
-    });
-
->>>>>>> bba3ae26f4aa25e3edc3fe52af646d74dfcbfb39
     var colorTranslucency = "99";
 
     for (var i = 0; i < highlighterColorsMap.map((a) => a.color).length; i++) {
@@ -361,8 +133,6 @@ class HighlighterPopover extends obsidian.Plugin {
             "</mark>"
         );
 
-        //debugger
-
         let ulElement = document.getElementById("highlightColorButtonList");
         if (ulElement) {
           if (ulElement.firstChild) {
@@ -370,8 +140,8 @@ class HighlighterPopover extends obsidian.Plugin {
             let divElement = document.getElementById("highlighterContainer");
             while (divElement.firstChild) {
               divElement.removeChild(divElement.firstChild);
-              if (newDiv) {
-                newDiv.remove();
+              if (divElement) {
+                divElement.remove();
               } else {
                 return;
               }
@@ -409,8 +179,8 @@ class HighlighterPopover extends obsidian.Plugin {
             let divElement = document.getElementById("highlighterContainer");
             while (divElement.firstChild) {
               divElement.removeChild(divElement.firstChild);
-              if (newDiv) {
-                newDiv.remove();
+              if (divElement) {
+                divElement.remove();
               } else {
                 return;
               }
@@ -429,17 +199,10 @@ class SettingsTab extends obsidian.PluginSettingTab {
   display() {
     const { containerEl, plugin } = this;
     containerEl.empty();
-<<<<<<< HEAD
     containerEl.createEl("h2", { text: "Highlightr Settings" });
     new obsidian.Setting(containerEl)
       .setName("Pick Highlighter Style")
       .setDesc("Coming soon...");
-=======
-    containerEl.createEl("h2", { text: t("Highlightr Settings") });
-    new obsidian.Setting(containerEl)
-      .setName(t("Pick Highlighter Style"))
-      .setDesc(t("Coming soon..."));
->>>>>>> bba3ae26f4aa25e3edc3fe52af646d74dfcbfb39
 
     const div = containerEl.createEl("div", {
       cls: "cDonationSection",
@@ -448,17 +211,9 @@ class SettingsTab extends obsidian.PluginSettingTab {
     const credit = document.createElement("p");
     const donateText = document.createElement("p");
     donateText.appendText(
-<<<<<<< HEAD
       "If you like this Plugin and are considering donating to support continued development, use the button below!"
     );
     credit.appendText("Created with ❤️ by Chetachi");
-=======
-      t(
-        "If you like this Plugin and are considering donating to support continued development, use the button below!"
-      )
-    );
-    credit.appendText(t("Created with ❤️ by Chetachi"));
->>>>>>> bba3ae26f4aa25e3edc3fe52af646d74dfcbfb39
     credit.setAttribute("style", "color: var(--text-muted)");
     div.appendChild(donateText);
     div.appendChild(credit);
@@ -490,25 +245,18 @@ function handleContextMenu(
   if (instance.getSelection()) {
     menu.addItem((item) => {
       item
-<<<<<<< HEAD
         .setTitle("Highlight")
-=======
-        .setTitle(t("Highlight"))
->>>>>>> bba3ae26f4aa25e3edc3fe52af646d74dfcbfb39
         .setIcon("highlightpen")
         .onClick((_) =>
           __awaiter(this, void 0, void 0, function* () {
+            positionHighlightr();
             plugin.handleHighlighter();
           })
         );
     });
     menu.addItem((item) => {
       item
-<<<<<<< HEAD
         .setTitle("Unhighlight")
-=======
-        .setTitle(t("Unhighlight"))
->>>>>>> bba3ae26f4aa25e3edc3fe52af646d74dfcbfb39
         .setIcon("eraser")
         .onClick((_) => {
           if (instance.getSelection()) {
@@ -539,11 +287,7 @@ export default class HighlightrPlugin extends obsidian.Plugin {
     this.menus = [
       {
         pluginName: this.manifest.id,
-<<<<<<< HEAD
         name: "Highlight",
-=======
-        name: t("Highlight"),
->>>>>>> bba3ae26f4aa25e3edc3fe52af646d74dfcbfb39
         icon: "highlightpen",
         onClick: (instance: CodeMirror.Editor): void => {
           if (instance.getSelection()) {
@@ -554,11 +298,7 @@ export default class HighlightrPlugin extends obsidian.Plugin {
       },
       {
         pluginName: this.manifest.id,
-<<<<<<< HEAD
         name: "Unhighlight",
-=======
-        name: t("Unhighlight"),
->>>>>>> bba3ae26f4aa25e3edc3fe52af646d74dfcbfb39
         icon: "eraser",
         onClick: (instance: CodeMirror.Editor): void => {
           if (instance.getSelection()) {
@@ -593,14 +333,11 @@ export default class HighlightrPlugin extends obsidian.Plugin {
     return __awaiter(this, void 0, void 0, function* () {
       console.log("Loading Highlightr");
       yield this.loadSettings();
+      positionHighlightr();
       addIcons();
       this.addSettingTab(new SettingsTab(this.app, this));
       this.addCommand({
-<<<<<<< HEAD
         name: "Highlight Text",
-=======
-        name: t("Highlight Text"),
->>>>>>> bba3ae26f4aa25e3edc3fe52af646d74dfcbfb39
         callback: () => {},
       });
 
