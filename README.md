@@ -22,7 +22,7 @@ Obsidian app version 12.8 adds a powerful custom context menu for easier note-ta
 
 ## Installation
 
-This plugin will be available in the community plugin browser in Obsidian after review. For a manual installation, you can download the necessary files and place them within your plugin folder.
+This plugin is not currently ready for public use. Once it has been completed and reviewed, it will be avaiable for all users to install.
 
 ---
 
