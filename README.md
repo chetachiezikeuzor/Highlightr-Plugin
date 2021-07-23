@@ -6,27 +6,27 @@
 
 Highlightr is a simple plugin that brings a minimal and aesthetically pleasing highlighting modal into the app. This plugin makes color-coded highlighting much easier with a user-friendly assortment of highlight colors.
 
-### Demo
+## Demo
 
 ![](https://github.com/chetachiezikeuzor/Highlightr-Plugin/blob/master/assets/highlightr-demo.gif)
 
-### Ease of Use
+## Ease of Use
 
 Make beautiful highlights in your notes to supplement your note-taking workflow. The colors included were chosen for universal use across themes, in both light and dark mode. The use of inline CSS is essential in maintaining the longevity of your notes. When you export, you will not be reliant on any external CSS styling. This will make your notes much more flexible!
 
-### How it Works
+## How it Works
 
 Obsidian app version 12.8 adds a powerful custom context menu for easier note-taking. This plugin adds 2 menu items: Highlight and Unhighlight. These menu items can only be seen on text selection. Clicking "Highlight" will trigger the highlighting modal, allowing you to choose from an assortment of colors. When you choose a color, your selected text will then be wrapped within HTML mark tags, including a color for the background that corresponds with the color you have chosen. Clicking "Unhighlight" will replace text that is within the string "<", "/>." That means that you can use this to remove HTML markings, and not just highlight marks.
 
 ![](https://github.com/chetachiezikeuzor/Highlightr-Plugin/blob/master/assets/highlightr.png)
 
-### Installation
+## Installation
 
 This plugin will be available in the community plugin browser in Obsidian after review. For a manual installation, you can download the necessary files and place them within your plugin folder.
 
 ---
 
-### Support
+## Support
 
 If you like this Plugin and are considering donating to support continued development, use the button below!
 
