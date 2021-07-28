@@ -78,7 +78,7 @@ class HighlighterPopover extends obsidian.Plugin {
     var colorButtons = document.createElement("ul");
     colorButtons.setAttribute("id", "highlightColorButtonList");
 
-    var colorTranslucency = "99";
+    var colorTranslucency = "A6";
 
     for (var i = 0; i < highlighterColorsMap.map((a) => a.color).length; i++) {
       var colorButton = document.createElement("li");
@@ -331,10 +331,6 @@ export default class HighlightrPlugin extends obsidian.Plugin {
       positionHighlightr();
       addIcons();
       this.addSettingTab(new SettingsTab(this.app, this));
-      this.addCommand({
-        name: "Highlight Text",
-        callback: () => {},
-      });
 
       this.registerEvent(
         this.app.workspace.on("editor-menu", (menu: Menu, editor, _) => {
