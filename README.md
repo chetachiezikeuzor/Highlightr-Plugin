@@ -2,8 +2,6 @@
 
 ![](https://github.com/chetachiezikeuzor/Highlightr-Plugin/blob/master/assets/Highlightr%20Demo%20Header.png)
 
-### Disclaimer: This plugin is **not** ready for use
-
 Highlightr is a simple plugin that brings a minimal and aesthetically pleasing highlighting modal into the app. This plugin makes color-coded highlighting much easier with a user-friendly assortment of highlight colors.
 
 ## Demo
@@ -22,7 +20,7 @@ Obsidian app version 12.8 adds a powerful custom context menu for easier note-ta
 
 ## Installation
 
-This plugin is not currently ready for public use. Once it has been completed and reviewed, it will be available for all users to install.
+This plugin will soon be available in Obsidian Plugin Store.
 
 ---
 
