@@ -1,0 +1,206 @@
+.setting-item.extra > .setting-item-info {
+  opacity: 0.65;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.9;
+  }
+  40% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.menu.highlighterContainer {
+  position: fixed;
+  width: 140px;
+  max-width: 225px;
+  max-height: 180px;
+  z-index: var(--layer-menu);
+  display: inline-block;
+  user-select: none;
+  overflow: hidden;
+}
+
+.menu.highlighterContainer {
+  min-width: 140px;
+  max-width: 225px;
+  max-height: 180px;
+  padding-left: 0em;
+  padding: 0;
+  margin: 0 auto;
+  border-radius: 6px;
+  font-size: 14px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: fixed;
+  animation: fade 300ms ease-in-out;
+  background-color: var(--background-primary);
+  box-shadow: 0px 3px 25px rgba(31, 38, 135, 0.1);
+  border: 1px solid var(--background-modifier-border);
+}
+
+.menu.highlighterContainer div {
+  padding: 16px;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  cursor: pointer;
+  text-align: left;
+  list-style-type: none;
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.menu.highlighterContainer div:last-child {
+  border-bottom: none;
+}
+
+/*----------------------------------------------------------------
+SETTINGS TAB
+----------------------------------------------------------------*/
+
+.pickr .pcr-button:before {
+  background: url('data:image/svg+xml;utf8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2"><path fill="white" d="M1,0H2V1H1V0ZM0,1H1V2H0V1Z"/><path fill="gray" d="M0,0H1V1H0V0ZM1,1H2V2H1V1Z"/></svg>');
+  background-size: 0.5em;
+  z-index: -1;
+  z-index: auto;
+}
+
+.pcr-app[data-theme="nano"]
+  .pcr-selection
+  .pcr-color-preview
+  .pcr-current-color:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2"><path fill="white" d="M1,0H2V1H1V0ZM0,1H1V2H0V1Z"/><path fill="gray" d="M0,0H1V1H0V0ZM1,1H2V2H1V1Z"/></svg>');
+  background-size: 0.5em;
+  border-radius: 0.15em;
+  z-index: -1;
+}
+
+.pcr-app .pcr-swatches > button:before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml;utf8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2"><path fill="white" d="M1,0H2V1H1V0ZM0,1H1V2H0V1Z"/><path fill="gray" d="M0,0H1V1H0V0ZM1,1H2V2H1V1Z"/></svg>');
+  background-size: 6px;
+  border-radius: 0.15em;
+  z-index: -1;
+}
+
+.pcr-app[data-theme="nano"]
+  .pcr-selection
+  .pcr-color-preview
+  .pcr-current-color {
+  position: relative;
+  background: currentColor;
+  width: 2em;
+  height: 2em;
+  border-radius: 50em;
+  overflow: hidden;
+}
+
+button.HighlightrSettingsButton {
+  padding: 4px 14px;
+  border-radius: 6px;
+  height: fit-content;
+  align-self: center;
+}
+
+button.HighlightrSettingsButton svg {
+  width: 1.3em;
+  height: 1.3em;
+  display: flex;
+}
+
+.highlighter-settings-color {
+  width: 84%;
+  color: var(--text-normal);
+}
+.highlighter-settings-value {
+  display: none;
+}
+
+.highlighterplugin-setting-item {
+  display: block;
+}
+
+.highlighterplugin-setting-item .setting-item-control {
+  justify-content: space-between;
+  margin-top: 12px;
+  align-items: normal;
+}
+
+.modal.mod-settings
+  button:not(.mod-cta):not(.mod-warning).HighlightrSettingsButton.HighlightrSettingsButtonAdd,
+button:not(.mod-cta):not(.mod-warning).HighlightrSettingsButton.HighlightrSettingsButtonAdd {
+  background-color: var(--interactive-accent);
+}
+
+.modal.mod-settings
+  button:not(.mod-cta):not(.mod-warning).HighlightrSettingsButton.HighlightrSettingsButtonDelete,
+button:not(.mod-cta):not(.mod-warning).HighlightrSettingsButton.HighlightrSettingsButtonDelete {
+  background-color: #989cab;
+}
+
+/**/
+
+.HighlightrSettingsTabsContainer {
+  border-top: 1px solid var(--background-modifier-border);
+  border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.setting-item.highlighter-setting-item:first-child {
+  padding-top: 18px;
+}
+
+.highlighter-setting-item {
+  cursor: grab;
+  padding: 18px 0 18px 0;
+}
+
+.highlighter-sortable-fallback {
+  cursor: grabbing;
+  box-shadow: 0px 3px 32px rgb(31 38 135 / 15%);
+}
+
+.highlighter-sortable-grab {
+  cursor: grabbing !important;
+}
+
+.highlighter-sortable-ghost {
+  opacity: 0.4;
+  cursor: grabbing;
+}
+
+.highlighter-sortable-chosen {
+  cursor: grabbing;
+  padding: 18px 0 18px 18px;
+  background-color: var(--background-primary);
+}
+
+.highlighter-sortable-drag {
+  cursor: grabbing;
+  box-shadow: 0px 3px 32px rgb(31 38 135 / 15%);
+}
+
+/**/
+
+.cDonationSection {
+  width: 60%;
+  margin: 0 auto;
+  text-align: center;
+  color: var(--text-normal);
+}
