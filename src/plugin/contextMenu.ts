@@ -12,10 +12,10 @@ export default function contextMenu(
   settings: HighlightrSettings
 ): void {
   const selection = instance.getSelection();
+
   menu.addItem((item) => {
     const itemDom = (item as any).dom as HTMLElement;
     itemDom.addClass("highlighter-button");
-
     item
       .setTitle("Highlight")
       .setIcon("highlightpen")
