@@ -35,7 +35,6 @@ export default class HighlightrPlugin extends Plugin {
     console.log("Highlightr v" + this.manifest.version + " loaded");
     addIcons();
     await this.loadSettings();
-    // @ts-ignore
     this.registerEvent(
       // @ts-ignore
       this.app.workspace.on("editor-menu", this.handleHighlighterMenu)
@@ -51,6 +50,7 @@ export default class HighlightrPlugin extends Plugin {
           : true;
       },
     });
+
     addEventListener("Highlightr-NewCommand", () => {
       this.generateCommands(this.instance);
     });
@@ -59,7 +59,7 @@ export default class HighlightrPlugin extends Plugin {
 
   generateCommands(editor: Editor) {
     this.settings.highlighters.forEach((highlighter: Highlighters) => {
-      const applyCommand = (command: commandPlot, editor: Editor) => {
+      const applyCommand = (command: CommandPlot, editor: Editor) => {
         const selectedText = editor.getSelection();
         const curserStart = editor.getCursor("from");
         const curserEnd = editor.getCursor("to");
@@ -77,13 +77,13 @@ export default class HighlightrPlugin extends Plugin {
         };
         const pre = editor.getRange(preStart, curserStart);
 
-        if (pre == prefix.trimStart()) {
+        if (pre === prefix.trimStart()) {
           const sufEnd = {
             line: curserStart.line + command.line,
             ch: curserEnd.ch + suffix.length,
           };
           const suf = editor.getRange(curserEnd, sufEnd);
-          if (suf == suffix.trimEnd()) {
+          if (suf === suffix.trimEnd()) {
             editor.replaceRange(selectedText, preStart, sufEnd);
             return setCursor(-1);
           }
@@ -93,7 +93,7 @@ export default class HighlightrPlugin extends Plugin {
         return setCursor(1);
       };
 
-      type commandPlot = {
+      type CommandPlot = {
         char: number;
         line: number;
         prefix: string;
@@ -101,11 +101,11 @@ export default class HighlightrPlugin extends Plugin {
       };
 
       type commandsPlot = {
-        [key: string]: commandPlot;
+        [key: string]: CommandPlot;
       };
 
       const commandsMap: commandsPlot = {
-        underline: {
+        highlight: {
           char: 34,
           line: 0,
           prefix: '<mark style="background: ' + highlighter.value + `;">`,

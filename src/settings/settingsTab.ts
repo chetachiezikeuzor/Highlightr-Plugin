@@ -42,12 +42,12 @@ export class HighlightrSettingTab extends PluginSettingTab {
             return `${highlight.value}`;
           }
         );
-        var value =
+        let value =
           document.querySelector(".highlighter-settings-value").nodeValue ||
           null;
 
         let colorHex;
-        var pickr = new Pickr({
+        let pickr = new Pickr({
           el: ".highlightr-color-picker",
           theme: "nano",
           swatches: higlighterHexArray,
@@ -110,7 +110,7 @@ export class HighlightrSettingTab extends PluginSettingTab {
               ".highlighter-settings-color"
               //@ts-ignore
             ).value;
-            var value = document.querySelector(
+            let value = document.querySelector(
               ".highlighter-settings-value"
               //@ts-ignore
             ).value;
@@ -136,11 +136,11 @@ export class HighlightrSettingTab extends PluginSettingTab {
           });
       });
 
-    const MSApplicationsContainer = containerEl.createEl("div", {
+    const highlightersContainer = containerEl.createEl("div", {
       cls: "HighlightrSettingsTabsContainer",
     });
 
-    Sortable.create(MSApplicationsContainer, {
+    Sortable.create(highlightersContainer, {
       animation: 500,
       ghostClass: "highlighter-sortable-ghost",
       chosenClass: "highlighter-sortable-chosen",
@@ -159,7 +159,7 @@ export class HighlightrSettingTab extends PluginSettingTab {
 
     this.plugin.settings.highlighters.forEach((highlighter) => {
       const icon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=${highlighter.value} stroke=${highlighter.value} stroke-width="0" stroke-linecap="round" stroke-linejoin="round"><path d="M20.707 5.826l-3.535-3.533a.999.999 0 0 0-1.408-.006L7.096 10.82a1.01 1.01 0 0 0-.273.488l-1.024 4.437L4 18h2.828l1.142-1.129l3.588-.828c.18-.042.345-.133.477-.262l8.667-8.535a1 1 0 0 0 .005-1.42zm-9.369 7.833l-2.121-2.12l7.243-7.131l2.12 2.12l-7.242 7.131zM4 20h16v2H4z"/></svg>`;
-      const settingItem = MSApplicationsContainer.createEl("div");
+      const settingItem = highlightersContainer.createEl("div");
       settingItem.addClass("highlighter-item-draggable");
       const colorIcon = settingItem.createEl("span");
       colorIcon.addClass("highlighter-setting-icon");
@@ -169,15 +169,17 @@ export class HighlightrSettingTab extends PluginSettingTab {
         .setClass("highlighter-setting-item")
         .setName(highlighter.color)
         .setDesc(`${highlighter.value}`)
-        .addButton((btn) => {
-          btn
+        .addButton((button) => {
+          button
             .setClass("HighlightrSettingsButton")
             .setClass("HighlightrSettingsButtonDelete")
             .setIcon("highlighterDelete")
             .setTooltip("Remove")
             .onClick(async () => {
               new Notice(`${highlighter.color} highlight deleted`);
-              new Notice(`Reload to remove command`);
+              (this.app as any).commands.removeCommand(
+                `highlightr-plugin:${highlighter.color}`
+              );
               this.plugin.settings.highlighters.remove(highlighter);
               setTimeout(() => {
                 dispatchEvent(new Event("Highlightr-NewCommand"));

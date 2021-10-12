@@ -9,9 +9,9 @@ export default function highlighterMenu(
   plugin: HighlightrPlugin,
   settings: HighlightrSettings
 ) {
-  const activeLeaf = app.workspace.getActiveViewOfType(MarkdownView);
+  const activeView = app.workspace.getActiveViewOfType(MarkdownView);
 
-  if (activeLeaf.editor.hasFocus()) {
+  if (activeView && activeView.editor.hasFocus()) {
     const selection = document.getSelection();
     const selectionContainer = selection.getRangeAt(0)
       .commonAncestorContainer as HTMLElement;
@@ -25,7 +25,7 @@ export default function highlighterMenu(
     menuDom.addClass("highlighterContainer");
 
     settings.highlighters.forEach((highlighter) => {
-      var colorButton = menuDom.createEl("div");
+      const colorButton = menuDom.createEl("div");
       colorButton.setAttribute("id", `${highlighter.color}`);
 
       colorButton.addEventListener("click", function (event) {
@@ -35,7 +35,7 @@ export default function highlighterMenu(
         );
       });
 
-      var colorButtonIcon = colorButton.createEl("span");
+      const colorButtonIcon = colorButton.createEl("span");
       colorButtonIcon.innerHTML =
         '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true" focusable="false" width="1.15em" height="1.15em" style="-ms-transform: rotate(360deg); -webkit-transform: rotate(360deg); transform: rotate(360deg);" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><title>' +
         highlighter.color +
@@ -46,7 +46,7 @@ export default function highlighterMenu(
       );
       colorButtonIcon.style.fill = highlighter.value;
 
-      var colorButtonText = colorButton.createEl("span");
+      const colorButtonText = colorButton.createEl("span");
       colorButtonText.innerHTML = highlighter.color;
       colorButtonText.setAttribute("style", "font-weight: 400;");
     });
