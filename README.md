@@ -1,7 +1,3 @@
----
-date updated: "2021-10-11T19:49:52-05:00"
----
-
 # Highlightr-Plugin
 
 ![Highlightr-Plugin Downloads](https://img.shields.io/github/downloads/chetachiezikeuzor/Highlightr-Plugin/total.svg)
