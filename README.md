@@ -39,6 +39,10 @@ You can also use the new command added in version [1.0.0]() to open your highlig
 
 <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/highlightr.png" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
+## Disclaimer
+
+This plugin will not work with [cMenu plugin](https://github.com/chetachiezikeuzor/cMenu-Plugin).
+
 ## Installation
 
 This plugin is not yet available in the Obsidian community plugin store. You can install it from there once it has been accepted. For a manual installation, you can download the necessary files and place them within your plugins folder.
