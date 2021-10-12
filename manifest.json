@@ -1,7 +1,7 @@
 {
   "id": "highlightr-plugin",
   "name": "Highlightr",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "minAppVersion": "0.12.8",
   "description": "Highlightr is a simple plugin that brings a minimal and aesthetically pleasing highlighting menu into the Obsidian note-taking app. This plugin makes color-coded highlighting much easier with a user-friendly assortment of highlight colors 🎨.",
   "author": "chetachi",
