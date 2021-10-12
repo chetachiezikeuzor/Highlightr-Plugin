@@ -13,39 +13,39 @@ export const DEFAULT_SETTINGS: HighlightrSettings = {
   highlighters: [
     {
       color: "Pink",
-      value: "#FFB8EB",
+      value: "#FFB8EBA6",
     },
     {
       color: "Red",
-      value: "#FF5582",
+      value: "#FF5582A6",
     },
     {
       color: "Orange",
-      value: "#FFB86C",
+      value: "#FFB86CA6",
     },
     {
       color: "Yellow",
-      value: "#FFF3A3",
+      value: "#FFF3A3A6",
     },
     {
       color: "Green",
-      value: "#BBFABB",
+      value: "#BBFABBA6",
     },
     {
       color: "Cyan",
-      value: "#ABF7F7",
+      value: "#ABF7F7A6",
     },
     {
       color: "Blue",
-      value: "#ADCCFF",
+      value: "#ADCCFFA6",
     },
     {
       color: "Purple",
-      value: "#D2B3FF",
+      value: "#D2B3FFA6",
     },
     {
       color: "Grey",
-      value: "#CACFD9",
+      value: "#CACFD9A6",
     },
   ],
 };

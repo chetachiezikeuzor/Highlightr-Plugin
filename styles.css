@@ -61,56 +61,8 @@
 }
 
 /*----------------------------------------------------------------
-  SETTINGS TAB
-  ----------------------------------------------------------------*/
-
-.pickr .pcr-button:before {
-  background: url('data:image/svg+xml;utf8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2"><path fill="white" d="M1,0H2V1H1V0ZM0,1H1V2H0V1Z"/><path fill="gray" d="M0,0H1V1H0V0ZM1,1H2V2H1V1Z"/></svg>');
-  background-size: 0.5em;
-  z-index: -1;
-  z-index: auto;
-}
-
-.pcr-app[data-theme="nano"]
-  .pcr-selection
-  .pcr-color-preview
-  .pcr-current-color:before {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('data:image/svg+xml;utf8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2"><path fill="white" d="M1,0H2V1H1V0ZM0,1H1V2H0V1Z"/><path fill="gray" d="M0,0H1V1H0V0ZM1,1H2V2H1V1Z"/></svg>');
-  background-size: 0.5em;
-  border-radius: 0.15em;
-  z-index: -1;
-}
-
-.pcr-app .pcr-swatches > button:before {
-  position: absolute;
-  content: "";
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('data:image/svg+xml;utf8, <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2 2"><path fill="white" d="M1,0H2V1H1V0ZM0,1H1V2H0V1Z"/><path fill="gray" d="M0,0H1V1H0V0ZM1,1H2V2H1V1Z"/></svg>');
-  background-size: 6px;
-  border-radius: 0.15em;
-  z-index: -1;
-}
-
-.pcr-app[data-theme="nano"]
-  .pcr-selection
-  .pcr-color-preview
-  .pcr-current-color {
-  position: relative;
-  background: currentColor;
-  width: 2em;
-  height: 2em;
-  border-radius: 50em;
-  overflow: hidden;
-}
+    SETTINGS TAB
+    ----------------------------------------------------------------*/
 
 button.HighlightrSettingsButton {
   padding: 4px 14px;
@@ -156,9 +108,21 @@ button:not(.mod-cta):not(.mod-warning).HighlightrSettingsButton.HighlightrSettin
 }
 
 /**/
+.highlighter-setting-icon {
+  display: flex;
+  height: 24px;
+  width: 24px;
+}
+
+.highlighter-item-draggable {
+  cursor: grab;
+  display: grid;
+  grid-template-columns: 0.5fr 7.5fr;
+  align-items: center;
+  border-top: 1px solid var(--background-modifier-border);
+}
 
 .HighlightrSettingsTabsContainer {
-  border-top: 1px solid var(--background-modifier-border);
   border-bottom: 1px solid var(--background-modifier-border);
 }
 
@@ -167,8 +131,8 @@ button:not(.mod-cta):not(.mod-warning).HighlightrSettingsButton.HighlightrSettin
 }
 
 .highlighter-setting-item {
-  cursor: grab;
   padding: 18px 0 18px 0;
+  border-top: none;
 }
 
 .highlighter-sortable-fallback {
@@ -187,7 +151,7 @@ button:not(.mod-cta):not(.mod-warning).HighlightrSettingsButton.HighlightrSettin
 
 .highlighter-sortable-chosen {
   cursor: grabbing;
-  padding: 18px 0 18px 18px;
+  padding: 0 0 0 18px;
   background-color: var(--background-primary);
 }
 
@@ -204,6 +168,8 @@ button:not(.mod-cta):not(.mod-warning).HighlightrSettingsButton.HighlightrSettin
   text-align: center;
   color: var(--text-normal);
 }
+
+/**/
 
 .pcr-app .pcr-swatches > button {
   padding: 0;
@@ -336,7 +302,7 @@ button:not(.mod-cta):not(.mod-warning).HighlightrSettingsButton.HighlightrSettin
   position: fixed;
   display: flex;
   flex-direction: column;
-  z-index: 50;
+  z-index: 10000;
   border-radius: 0.1em;
   background: #fff;
   opacity: 0;

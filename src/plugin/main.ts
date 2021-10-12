@@ -4,7 +4,6 @@ import {
   PluginManifest,
   WorkspaceLeaf,
   Menu,
-  PluginSettingTab,
   Plugin,
   MarkdownView,
 } from "obsidian";
@@ -47,41 +46,90 @@ export default class HighlightrPlugin extends Plugin {
       name: "Highlight",
       icon: "highlightpen",
       callback: async () => {
-        highlighterMenu(this.app, this.instance, this, this.settings);
+        !document.querySelector(".menu.highlighterContainer")
+          ? highlighterMenu(this.app, this.instance, this, this.settings)
+          : true;
       },
+    });
+    addEventListener("Highlightr-NewCommand", () => {
+      this.generateCommands(this.instance);
     });
     this.generateCommands(this.instance);
   }
 
   generateCommands(editor: Editor) {
     this.settings.highlighters.forEach((highlighter: Highlighters) => {
-      this.addCommand({
-        id: `${highlighter.color}`,
-        name: highlighter.color,
-        icon: `highlightpen`,
-        callback: async () => {
-          const activeLeaf =
-            this.app.workspace.getActiveViewOfType(MarkdownView);
-          const view = activeLeaf;
-          const editor = view.editor;
-          const colorTranslucency = "A6";
-          //@ts-ignore
-          if (editor.getSelection()) {
-            const currentStr = editor.getSelection();
-            editor.replaceSelection(
-              '<mark style="background: ' +
-                highlighter.value +
-                colorTranslucency +
-                ';">' +
-                currentStr +
-                "</mark>"
-            );
+      const applyCommand = (command: commandPlot, editor: Editor) => {
+        const selectedText = editor.getSelection();
+        const curserStart = editor.getCursor("from");
+        const curserEnd = editor.getCursor("to");
+        const prefix = command.prefix;
+        const suffix = command.suffix || prefix;
+        const setCursor = (mode: number) => {
+          editor.setCursor(
+            curserStart.line + command.line * mode,
+            curserEnd.ch + command.prefix.length * mode
+          );
+        };
+        const preStart = {
+          line: curserStart.line - command.line,
+          ch: curserStart.ch - prefix.length,
+        };
+        const pre = editor.getRange(preStart, curserStart);
+
+        if (pre == prefix.trimStart()) {
+          const sufEnd = {
+            line: curserStart.line + command.line,
+            ch: curserEnd.ch + suffix.length,
+          };
+          const suf = editor.getRange(curserEnd, sufEnd);
+          if (suf == suffix.trimEnd()) {
+            editor.replaceRange(selectedText, preStart, sufEnd);
+            return setCursor(-1);
           }
-          editor.setCursor(editor.getCursor("to"));
-          await wait(10);
-          //@ts-ignore
-          this.app.commands.executeCommandById("editor:focus");
+        }
+        editor.replaceSelection(`${prefix}${selectedText}${suffix}`);
+
+        return setCursor(1);
+      };
+
+      type commandPlot = {
+        char: number;
+        line: number;
+        prefix: string;
+        suffix: string;
+      };
+
+      type commandsPlot = {
+        [key: string]: commandPlot;
+      };
+
+      const commandsMap: commandsPlot = {
+        underline: {
+          char: 34,
+          line: 0,
+          prefix: '<mark style="background: ' + highlighter.value + `;">`,
+          suffix: "</mark>",
         },
+      };
+      Object.keys(commandsMap).forEach((type) => {
+        this.addCommand({
+          id: `${highlighter.color}`,
+          name: highlighter.color,
+          icon: `highlightpen`,
+          callback: async () => {
+            const activeLeaf =
+              this.app.workspace.getActiveViewOfType(MarkdownView);
+            if (activeLeaf) {
+              const view = activeLeaf;
+              const editor = view.editor;
+              applyCommand(commandsMap[type], editor);
+              await wait(10);
+              //@ts-ignore
+              this.app.commands.executeCommandById("editor:focus");
+            }
+          },
+        });
       });
     });
   }
