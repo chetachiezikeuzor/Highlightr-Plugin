@@ -1,24 +1,10 @@
-import {
-  Editor,
-  App,
-  PluginManifest,
-  WorkspaceLeaf,
-  Menu,
-  Plugin,
-  MarkdownView,
-} from "obsidian";
-
+import { Editor, App, Menu, Plugin, MarkdownView } from "obsidian";
 import { wait } from "src/util/util";
-
 import { Highlighters } from "../settings/settingsData";
-
 import addIcons from "src/icons/customIcons";
-
 import { HighlightrSettingTab } from "../settings/settingsTab";
 import { HighlightrSettings } from "../settings/settingsData";
-
 import { DEFAULT_SETTINGS } from "../settings/settingsData";
-
 import contextMenu from "src/plugin/contextMenu";
 import highlighterMenu from "src/ui/highlighterMenu";
 
@@ -36,7 +22,6 @@ export default class HighlightrPlugin extends Plugin {
     addIcons();
     await this.loadSettings();
     this.registerEvent(
-      // @ts-ignore
       this.app.workspace.on("editor-menu", this.handleHighlighterMenu)
     );
     this.addSettingTab(new HighlightrSettingTab(this.app, this));
