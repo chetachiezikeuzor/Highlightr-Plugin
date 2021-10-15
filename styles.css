@@ -1,5 +1,3 @@
-/**/
-
 @keyframes fade {
   0% {
     opacity: 0;
@@ -166,8 +164,6 @@ button:not(.mod-cta):not(.mod-warning).HighlightrSettingsButton.HighlightrSettin
   text-align: center;
   color: var(--text-normal);
 }
-
-/**/
 
 .pcr-app .pcr-swatches > button {
   padding: 0;

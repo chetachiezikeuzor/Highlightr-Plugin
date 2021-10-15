@@ -31,7 +31,9 @@ export default function contextMenu(
         .onClick((e) => {
           if (instance.getSelection()) {
             const currentStr = instance.getSelection();
-            const newStr = currentStr.replace(/\<.*?[^\>]\>/g, "");
+            const newStr = currentStr
+              .replace(/\<mark style.*?[^\>]\>/g, "")
+              .replace(/\<\/mark>/g, "");
             instance.replaceSelection(newStr);
             //@ts-ignore
             app.commands.executeCommandById("editor:focus");

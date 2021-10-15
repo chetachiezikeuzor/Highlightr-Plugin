@@ -8,10 +8,6 @@ import { DEFAULT_SETTINGS } from "../settings/settingsData";
 import contextMenu from "src/plugin/contextMenu";
 import highlighterMenu from "src/ui/highlighterMenu";
 
-import "@simonwep/pickr/dist/themes/nano.min.css";
-//import "src/pickerOverrides.css";
-//import "src/settings.css";
-
 export default class HighlightrPlugin extends Plugin {
   app: App;
   instance: Editor;
@@ -27,7 +23,7 @@ export default class HighlightrPlugin extends Plugin {
     this.addSettingTab(new HighlightrSettingTab(this.app, this));
     this.addCommand({
       id: "highlighter-plugin-menu",
-      name: "Highlight",
+      name: "Open Highlightr",
       icon: "highlightpen",
       callback: async () => {
         !document.querySelector(".menu.highlighterContainer")
@@ -43,6 +39,16 @@ export default class HighlightrPlugin extends Plugin {
   }
 
   generateCommands(editor: Editor) {
+    const eraseHighlight = (editor: Editor) => {
+      const currentStr = editor.getSelection();
+      const newStr = currentStr
+        .replace(/\<mark style.*?[^\>]\>/g, "")
+        .replace(/\<\/mark>/g, "");
+      editor.replaceSelection(newStr);
+      //@ts-ignore
+      app.commands.executeCommandById("editor:focus");
+    };
+
     this.settings.highlighters.forEach((highlighter: Highlighters) => {
       const applyCommand = (command: CommandPlot, editor: Editor) => {
         const selectedText = editor.getSelection();
@@ -53,28 +59,43 @@ export default class HighlightrPlugin extends Plugin {
         const setCursor = (mode: number) => {
           editor.setCursor(
             curserStart.line + command.line * mode,
-            curserEnd.ch + command.prefix.length * mode
+            curserEnd.ch + cursorPos * mode
           );
         };
+        const cursorPos =
+          selectedText.length > 0
+            ? prefix.length + suffix.length + 1
+            : prefix.length;
         const preStart = {
           line: curserStart.line - command.line,
           ch: curserStart.ch - prefix.length,
         };
         const pre = editor.getRange(preStart, curserStart);
 
-        if (pre === prefix.trimStart()) {
-          const sufEnd = {
-            line: curserStart.line + command.line,
-            ch: curserEnd.ch + suffix.length,
-          };
-          const suf = editor.getRange(curserEnd, sufEnd);
-          if (suf === suffix.trimEnd()) {
+        const sufEnd = {
+          line: curserStart.line + command.line,
+          ch: curserEnd.ch + suffix.length,
+        };
+
+        const suf = editor.getRange(curserEnd, sufEnd);
+
+        const preLast = pre.slice(-1);
+        const prefixLast = prefix.trimStart().slice(-1);
+
+        if (suf === suffix.trimEnd()) {
+          if (preLast === prefixLast && selectedText) {
             editor.replaceRange(selectedText, preStart, sufEnd);
-            return setCursor(-1);
+            const changeCursor = (mode: number) => {
+              editor.setCursor(
+                curserStart.line + command.line * mode,
+                curserEnd.ch + (cursorPos * mode + 8)
+              );
+            };
+            return changeCursor(-1);
           }
         }
-        editor.replaceSelection(`${prefix}${selectedText}${suffix}`);
-
+        editor.replaceSelection(`${prefix}${selectedText}${suffix} `);
+        console.log(selectedText.length);
         return setCursor(1);
       };
 
@@ -115,6 +136,22 @@ export default class HighlightrPlugin extends Plugin {
             }
           },
         });
+      });
+      this.addCommand({
+        id: "unhighlight",
+        name: "Remove highlight",
+        icon: "eraser",
+        callback: async () => {
+          const activeLeaf =
+            this.app.workspace.getActiveViewOfType(MarkdownView);
+          if (activeLeaf) {
+            const view = activeLeaf;
+            const editor = view.editor;
+            eraseHighlight(editor);
+            //@ts-ignore
+            this.app.commands.executeCommandById("editor:focus");
+          }
+        },
       });
     });
   }
