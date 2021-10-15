@@ -94,7 +94,9 @@ export default class HighlightrPlugin extends Plugin {
             return changeCursor(-1);
           }
         }
-        editor.replaceSelection(`${prefix}${selectedText}${suffix} `);
+        selectedText
+          ? editor.replaceSelection(`${prefix}${selectedText}${suffix}`)
+          : editor.replaceSelection(`${prefix}${selectedText}${suffix} `);
         console.log(selectedText.length);
         return setCursor(1);
       };
