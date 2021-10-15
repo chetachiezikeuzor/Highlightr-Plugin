@@ -81,6 +81,7 @@ export default class HighlightrPlugin extends Plugin {
 
         const preLast = pre.slice(-1);
         const prefixLast = prefix.trimStart().slice(-1);
+        const sufFirst = suf[0];
 
         if (suf === suffix.trimEnd()) {
           if (preLast === prefixLast && selectedText) {
@@ -94,10 +95,15 @@ export default class HighlightrPlugin extends Plugin {
             return changeCursor(-1);
           }
         }
-        selectedText
+
+        (selectedText && sufFirst === " ") ||
+        (!selectedText && sufFirst === " ")
           ? editor.replaceSelection(`${prefix}${selectedText}${suffix}`)
+          : selectedText && sufFirst !== " "
+          ? editor.replaceSelection(`${prefix}${selectedText}${suffix} `)
           : editor.replaceSelection(`${prefix}${selectedText}${suffix} `);
-        console.log(selectedText.length);
+
+        console.log(sufFirst);
         return setCursor(1);
       };
 
