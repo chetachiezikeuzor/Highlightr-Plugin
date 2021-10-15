@@ -61,7 +61,7 @@ This plugin is not yet available in the Obsidian community plugin store. You can
 - Added function to add commands per highlighter
   <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/highlighterdemo2.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
-### [1.0.1](https://github.com/chetachiezikeuzor/Highlightr-Plugin/releases/tag/1.0.1) - Oct 10, 2021
+### [1.0.1](https://github.com/chetachiezikeuzor/Highlightr-Plugin/releases/tag/1.0.1) - Oct 12, 2021
 
 ##### Added
 
@@ -71,7 +71,7 @@ This plugin is not yet available in the Obsidian community plugin store. You can
 
 - Bug: Check added to see that activeView isn't null
 
-### [1.1.0](https://github.com/chetachiezikeuzor/Highlightr-Plugin/releases/tag/1.1.0) - Oct 10, 2021
+### [1.1.0](https://github.com/chetachiezikeuzor/Highlightr-Plugin/releases/tag/1.1.0) - Oct 14, 2021
 
 ##### Added
 
@@ -81,19 +81,16 @@ This plugin is not yet available in the Obsidian community plugin store. You can
 ##### Changed
 
 - Updated undo highlight functionality
-  <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/undeohighlight.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+  <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/undohighlight.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 - Creating empty highlight now adds space at the end
   <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/addedspace.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
-### [1.1.1](https://github.com/chetachiezikeuzor/Highlightr-Plugin/releases/tag/1.1.1) - Oct 10, 2021
+### [1.1.1](https://github.com/chetachiezikeuzor/Highlightr-Plugin/releases/tag/1.1.1) - Oct 15, 2021
 
-##### Added
+##### Changed
 
-- Added new setting to customize highlighter colors.
-  <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/highlightrdemo1.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
-- Added command to open highlighter palette
-- Added function to add commands per highlighter
-  <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/highlighterdemo2.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+- Updated logic to cursor repositioning
+  <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/betterCursorPos.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
 ---
 
@@ -101,6 +98,8 @@ This plugin is not yet available in the Obsidian community plugin store. You can
 
 - [x] Highlighter color commands
 - [x] Open highlighter palette with command
+- [x] Unhighlight with command
+- [x] Undo highlight functionality
 - [x] Customize highlighter colors
 
 ---
