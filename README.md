@@ -61,6 +61,40 @@ This plugin is not yet available in the Obsidian community plugin store. You can
 - Added function to add commands per highlighter
   <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/highlighterdemo2.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
+### [1.0.1](https://github.com/chetachiezikeuzor/Highlightr-Plugin/releases/tag/1.0.1) - Oct 10, 2021
+
+##### Added
+
+- Function to remove commands automatically from command library after color deletion.
+
+##### Fixed
+
+- Bug: Check added to see that activeView isn't null
+
+### [1.1.0](https://github.com/chetachiezikeuzor/Highlightr-Plugin/releases/tag/1.1.0) - Oct 10, 2021
+
+##### Added
+
+- Added command to remove highlight (`<mark>`)
+  <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/removehighlightcommand.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+
+##### Changed
+
+- Updated undo highlight functionality
+  <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/undeohighlight.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+- Creating empty highlight now adds space at the end
+  <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/addedspace.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+
+### [1.1.1](https://github.com/chetachiezikeuzor/Highlightr-Plugin/releases/tag/1.1.1) - Oct 10, 2021
+
+##### Added
+
+- Added new setting to customize highlighter colors.
+  <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/highlightrdemo1.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+- Added command to open highlighter palette
+- Added function to add commands per highlighter
+  <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/highlighterdemo2.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+
 ---
 
 ## Checklist
