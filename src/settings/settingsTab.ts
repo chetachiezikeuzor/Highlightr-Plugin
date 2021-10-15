@@ -116,7 +116,6 @@ export class HighlightrSettingTab extends PluginSettingTab {
             ).value;
             if (color && value) {
               value.length == 7 ? (value = `${value}A6`) : (value = `${value}`);
-              console.log(value.length);
               this.plugin.settings.highlighters.push({
                 color,
                 value,

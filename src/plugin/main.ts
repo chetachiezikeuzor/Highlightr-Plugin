@@ -103,7 +103,6 @@ export default class HighlightrPlugin extends Plugin {
           ? editor.replaceSelection(`${prefix}${selectedText}${suffix} `)
           : editor.replaceSelection(`${prefix}${selectedText}${suffix} `);
 
-        console.log(sufFirst);
         return setCursor(1);
       };
 
