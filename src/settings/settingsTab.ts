@@ -2,6 +2,7 @@ import type HighlightrPlugin from "src/plugin/main";
 import { App, Setting, PluginSettingTab, Notice } from "obsidian";
 import Pickr from "@simonwep/pickr";
 import Sortable from "sortablejs";
+import { HIGHLIGHTER_STYLES } from "./settingsData";
 
 export class HighlightrSettingTab extends PluginSettingTab {
   plugin: HighlightrPlugin;
@@ -21,6 +22,24 @@ export class HighlightrSettingTab extends PluginSettingTab {
       href: "https://github.com/chetachiezikeuzor",
     });
     containerEl.createEl("h2", { text: "Plugin Settings" });
+    new Setting(containerEl)
+      .setName("Customize highlight style")
+      .setDesc(
+        `Depending on your design aesthetic, you may want to customize the style of your highlights. Choose from an assortment of different highlighter styles by using the dropdown. Depending on your theme, this plugin's CSS may be overriden.`
+      )
+      .addDropdown((dropdown) => {
+        let styles: Record<string, string> = {};
+        HIGHLIGHTER_STYLES.map((style) => (styles[style] = style));
+        dropdown.addOptions(styles);
+        dropdown
+          .setValue(this.plugin.settings.highlighterStyle)
+          .onChange((highlighterStyle) => {
+            this.plugin.settings.highlighterStyle = highlighterStyle;
+            this.plugin.saveSettings();
+            this.plugin.saveData(this.plugin.settings);
+            this.plugin.refresh();
+          });
+      });
     new Setting(containerEl)
       .setName("Customize highlight colors")
       .setClass("highlighterplugin-setting-item")

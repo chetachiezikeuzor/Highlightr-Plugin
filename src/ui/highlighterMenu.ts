@@ -5,7 +5,6 @@ import { HighlightrSettings } from "src/settings/settingsData";
 
 export default function highlighterMenu(
   app: App,
-  instance: Editor,
   plugin: HighlightrPlugin,
   settings: HighlightrSettings
 ) {

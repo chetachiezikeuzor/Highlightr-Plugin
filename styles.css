@@ -1,3 +1,124 @@
+/*highlighter style*/
+/*lowlight*/
+.highlightr-lowlight span.cm-highlight,
+.highlightr-lowlight .markdown-preview-view mark {
+  --lowlight-background: var(--background-primary);
+  border-radius: 0;
+  background-image: linear-gradient(
+    360deg,
+    rgba(255, 255, 255, 0) 48%,
+    var(--lowlight-background) 48%
+  ) !important;
+}
+
+.highlightr-lowlight .workspace-split.mod-left-split span.cm-highlight,
+.highlightr-lowlight
+  .workspace-split.mod-left-split
+  .markdown-preview-view
+  mark,
+.highlightr-lowlight .workspace-split.mod-right-split span.cm-highlight,
+.highlightr-lowlight
+  .workspace-split.mod-right-split
+  .markdown-preview-view
+  mark {
+  --lowlight-background: var(--background-secondary);
+}
+
+/*floating*/
+.highlightr-floating span.cm-highlight,
+.highlightr-floating .markdown-preview-view mark {
+  --floating-background: var(--background-primary);
+  border-radius: 0;
+  padding-bottom: 5px;
+  background-image: linear-gradient(
+    360deg,
+    rgba(255, 255, 255, 0) 28%,
+    var(--floating-background) 28%
+  ) !important;
+}
+
+.highlightr-floating .workspace-split.mod-left-split span.cm-highlight,
+.highlightr-floating
+  .workspace-split.mod-left-split
+  .markdown-preview-view
+  mark,
+.highlightr-floating .workspace-split.mod-right-split span.cm-highlight,
+.highlightr-floating
+  .workspace-split.mod-right-split
+  .markdown-preview-view
+  mark {
+  --floating-background: var(--background-secondary);
+}
+
+/*rounded*/
+.highlightr-rounded .markdown-preview-view mark {
+  margin: 0 -0.05em;
+  padding: 0.125em 0.15em;
+  border-radius: 0.2em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.highlightr-rounded span.cm-highlight {
+  border-radius: 0.2em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.highlightr-rounded .cm-s-obsidian span.cm-highlight {
+  font-weight: inherit;
+}
+
+.highlightr-rounded .cm-highlight + span.cm-formatting-highlight {
+  padding-left: 0em;
+  padding-right: 0.15em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/*realistic*/
+.highlightr-realistic .markdown-preview-view mark {
+  margin: 0 -0.05em;
+  padding: 0.1em 0.4em;
+  border-radius: 0.8em 0.3em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  text-shadow: 0 0 0.75em var(--background-primary-alt);
+}
+
+.highlightr-realistic.hide-tokens .cm-s-obsidian span.cm-highlight,
+.hide-tokens.highlightr-realistic .cm-s-obsidian span.cm-highlight {
+  border-radius: 0.8em 0.3em;
+}
+
+.highlightr-realistic .cm-s-obsidian span.cm-highlight {
+  padding: 0.15em 0.25em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  text-shadow: 0 0 0.75em var(--background-primary-alt);
+}
+
+.highlightr-realistic .cm-s-obsidian span.cm-formatting-highlight {
+  margin: 0 0 0 -0.05em;
+  padding: 0.15em 0.25em;
+  border-radius: 0.8em 0 0 0.3em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+.highlightr-realistic
+  .cm-s-obsidian
+  .cm-highlight
+  + span.cm-formatting-highlight {
+  margin: 0 -0.05em 0 0;
+  padding: 0.15em 0.25em;
+  border-radius: 0 0.3em 0.8em 0;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/*highlgihtr component*/
+
 @keyframes fade {
   0% {
     opacity: 0;

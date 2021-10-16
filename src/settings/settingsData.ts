@@ -1,15 +1,23 @@
+export const HIGHLIGHTER_STYLES = [
+  "none",
+  "lowlight",
+  "floating",
+  "rounded",
+  "realistic",
+];
+
 export interface Highlighters {
   color: any;
   value: string;
 }
 
 export interface HighlightrSettings {
-  aestheticStyle: boolean;
+  highlighterStyle: string;
   highlighters: Highlighters[];
 }
 
 export const DEFAULT_SETTINGS: HighlightrSettings = {
-  aestheticStyle: false,
+  highlighterStyle: "none",
   highlighters: [
     {
       color: "Pink",

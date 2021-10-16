@@ -10,7 +10,7 @@ import highlighterMenu from "src/ui/highlighterMenu";
 
 export default class HighlightrPlugin extends Plugin {
   app: App;
-  instance: Editor;
+  editor: Editor;
   settings: HighlightrSettings;
 
   async onload() {
@@ -27,28 +27,28 @@ export default class HighlightrPlugin extends Plugin {
       icon: "highlightpen",
       callback: async () => {
         !document.querySelector(".menu.highlighterContainer")
-          ? highlighterMenu(this.app, this.instance, this, this.settings)
+          ? highlighterMenu(this.app, this, this.settings)
           : true;
       },
     });
 
     addEventListener("Highlightr-NewCommand", () => {
-      this.generateCommands(this.instance);
+      this.generateCommands(this.editor);
     });
-    this.generateCommands(this.instance);
+    this.generateCommands(this.editor);
+    this.refresh();
   }
 
-  generateCommands(editor: Editor) {
-    const eraseHighlight = (editor: Editor) => {
-      const currentStr = editor.getSelection();
-      const newStr = currentStr
-        .replace(/\<mark style.*?[^\>]\>/g, "")
-        .replace(/\<\/mark>/g, "");
-      editor.replaceSelection(newStr);
-      //@ts-ignore
-      app.commands.executeCommandById("editor:focus");
-    };
+  eraseHighlight = (editor: Editor) => {
+    const currentStr = editor.getSelection();
+    const newStr = currentStr
+      .replace(/\<mark style.*?[^\>]\>/g, "")
+      .replace(/\<\/mark>/g, "");
+    editor.replaceSelection(newStr);
+    editor.focus();
+  };
 
+  generateCommands(editor: Editor) {
     this.settings.highlighters.forEach((highlighter: Highlighters) => {
       const applyCommand = (command: CommandPlot, editor: Editor) => {
         const selectedText = editor.getSelection();
@@ -130,17 +130,10 @@ export default class HighlightrPlugin extends Plugin {
           id: `${highlighter.color}`,
           name: highlighter.color,
           icon: `highlightpen`,
-          callback: async () => {
-            const activeLeaf =
-              this.app.workspace.getActiveViewOfType(MarkdownView);
-            if (activeLeaf) {
-              const view = activeLeaf;
-              const editor = view.editor;
-              applyCommand(commandsMap[type], editor);
-              await wait(10);
-              //@ts-ignore
-              this.app.commands.executeCommandById("editor:focus");
-            }
+          editorCallback: async (editor: Editor) => {
+            applyCommand(commandsMap[type], editor);
+            await wait(10);
+            editor.focus();
           },
         });
       });
@@ -148,20 +141,36 @@ export default class HighlightrPlugin extends Plugin {
         id: "unhighlight",
         name: "Remove highlight",
         icon: "eraser",
-        callback: async () => {
-          const activeLeaf =
-            this.app.workspace.getActiveViewOfType(MarkdownView);
-          if (activeLeaf) {
-            const view = activeLeaf;
-            const editor = view.editor;
-            eraseHighlight(editor);
-            //@ts-ignore
-            this.app.commands.executeCommandById("editor:focus");
-          }
+        editorCallback: async (editor: Editor) => {
+          this.eraseHighlight(editor);
+          editor.focus();
         },
       });
     });
   }
+
+  refresh = () => {
+    this.updateStyle();
+  };
+
+  updateStyle = () => {
+    document.body.classList.toggle(
+      "highlightr-lowlight",
+      this.settings.highlighterStyle === "lowlight"
+    );
+    document.body.classList.toggle(
+      "highlightr-floating",
+      this.settings.highlighterStyle === "floating"
+    );
+    document.body.classList.toggle(
+      "highlightr-rounded",
+      this.settings.highlighterStyle === "rounded"
+    );
+    document.body.classList.toggle(
+      "highlightr-realistic",
+      this.settings.highlighterStyle === "realistic"
+    );
+  };
 
   onunload() {
     console.log("Highlightr unloaded");

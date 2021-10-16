@@ -7,11 +7,11 @@ import highlighterMenu from "src/ui/highlighterMenu";
 export default function contextMenu(
   app: App,
   menu: Menu,
-  instance: Editor,
+  editor: Editor,
   plugin: HighlightrPlugin,
   settings: HighlightrSettings
 ): void {
-  const selection = instance.getSelection();
+  const selection = editor.getSelection();
 
   menu.addItem((item) => {
     const itemDom = (item as any).dom as HTMLElement;
@@ -20,7 +20,7 @@ export default function contextMenu(
       .setTitle("Highlight")
       .setIcon("highlightpen")
       .onClick(async (_) => {
-        highlighterMenu(app, instance, plugin, settings);
+        highlighterMenu(app, plugin, settings);
       });
   });
   if (selection) {
@@ -29,14 +29,8 @@ export default function contextMenu(
         .setTitle("Unhighlight")
         .setIcon("eraser")
         .onClick((e) => {
-          if (instance.getSelection()) {
-            const currentStr = instance.getSelection();
-            const newStr = currentStr
-              .replace(/\<mark style.*?[^\>]\>/g, "")
-              .replace(/\<\/mark>/g, "");
-            instance.replaceSelection(newStr);
-            //@ts-ignore
-            app.commands.executeCommandById("editor:focus");
+          if (editor.getSelection()) {
+            plugin.eraseHighlight(editor);
           }
         });
     });
