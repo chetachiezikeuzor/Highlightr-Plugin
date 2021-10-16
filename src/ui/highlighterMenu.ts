@@ -1,4 +1,3 @@
-import type { Editor } from "obsidian";
 import type HighlightrPlugin from "src/plugin/main";
 import { App, Menu, MarkdownView } from "obsidian";
 import { HighlightrSettings } from "src/settings/settingsData";
