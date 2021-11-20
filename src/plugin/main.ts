@@ -1,13 +1,13 @@
-import { Editor, App, Menu, Plugin, MarkdownView } from "obsidian";
-import { wait } from "src/util/util";
-import { Highlighters } from "../settings/settingsData";
+import { Editor, App, Menu, Plugin, WorkspaceLeaf } from "obsidian";
+import { wait } from "src/utils/util";
 import addIcons from "src/icons/customIcons";
 import { HighlightrSettingTab } from "../settings/settingsTab";
 import { HighlightrSettings } from "../settings/settingsData";
-import { DEFAULT_SETTINGS } from "../settings/settingsData";
+import DEFAULT_SETTINGS from "../settings/settingsData";
 import contextMenu from "src/plugin/contextMenu";
 import highlighterMenu from "src/ui/highlighterMenu";
 
+import { createStyles } from "src/utils/createStyles";
 export default class HighlightrPlugin extends Plugin {
   app: App;
   editor: Editor;
@@ -17,6 +17,9 @@ export default class HighlightrPlugin extends Plugin {
     console.log("Highlightr v" + this.manifest.version + " loaded");
     addIcons();
     await this.loadSettings();
+    this.app.workspace.onLayoutReady(() => {
+      this.reloadStyles(this.settings);
+    });
     this.registerEvent(
       this.app.workspace.on("editor-menu", this.handleHighlighterMenu)
     );
@@ -27,16 +30,27 @@ export default class HighlightrPlugin extends Plugin {
       icon: "highlightpen",
       callback: async () => {
         !document.querySelector(".menu.highlighterContainer")
-          ? highlighterMenu(this.app, this, this.settings)
+          ? highlighterMenu(this.app, this, this.settings, this.editor)
           : true;
       },
     });
 
     addEventListener("Highlightr-NewCommand", () => {
+      this.reloadStyles(this.settings);
       this.generateCommands(this.editor);
     });
     this.generateCommands(this.editor);
     this.refresh();
+  }
+
+  reloadStyles(settings: HighlightrSettings) {
+    let currentSheet = document.querySelector("style#highlightr-styles");
+    if (currentSheet) {
+      currentSheet.remove();
+      createStyles(settings);
+    } else {
+      createStyles(settings);
+    }
   }
 
   eraseHighlight = (editor: Editor) => {
@@ -49,7 +63,7 @@ export default class HighlightrPlugin extends Plugin {
   };
 
   generateCommands(editor: Editor) {
-    this.settings.highlighters.forEach((highlighter: Highlighters) => {
+    this.settings.highlighterOrder.forEach((highlighterKey: string) => {
       const applyCommand = (command: CommandPlot, editor: Editor) => {
         const selectedText = editor.getSelection();
         const curserStart = editor.getCursor("from");
@@ -121,14 +135,17 @@ export default class HighlightrPlugin extends Plugin {
         highlight: {
           char: 34,
           line: 0,
-          prefix: '<mark style="background: ' + highlighter.value + `;">`,
+          prefix:
+            this.settings.highlighterMethods === "css-classes"
+              ? `<mark class="hltr-${highlighterKey.toLowerCase()}">`
+              : `<mark style="background: ${this.settings.highlighters[highlighterKey]};">`,
           suffix: "</mark>",
         },
       };
       Object.keys(commandsMap).forEach((type) => {
         this.addCommand({
-          id: `${highlighter.color}`,
-          name: highlighter.color,
+          id: highlighterKey,
+          name: highlighterKey,
           icon: `highlightpen`,
           editorCallback: async (editor: Editor) => {
             applyCommand(commandsMap[type], editor);

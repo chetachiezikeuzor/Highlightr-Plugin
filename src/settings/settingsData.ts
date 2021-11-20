@@ -6,54 +6,37 @@ export const HIGHLIGHTER_STYLES = [
   "realistic",
 ];
 
+export const HIGHLIGHTER_METHODS = ["css-classes", "inline-styles"];
+
 export interface Highlighters {
-  color: any;
-  value: string;
+  [color: string]: string;
+  style?: string;
 }
 
 export interface HighlightrSettings {
   highlighterStyle: string;
-  highlighters: Highlighters[];
+  highlighterMethods: string;
+  highlighters: Highlighters;
+  highlighterOrder: string[];
 }
 
-export const DEFAULT_SETTINGS: HighlightrSettings = {
+const DEFAULT_SETTINGS: HighlightrSettings = {
   highlighterStyle: "none",
-  highlighters: [
-    {
-      color: "Pink",
-      value: "#FFB8EBA6",
-    },
-    {
-      color: "Red",
-      value: "#FF5582A6",
-    },
-    {
-      color: "Orange",
-      value: "#FFB86CA6",
-    },
-    {
-      color: "Yellow",
-      value: "#FFF3A3A6",
-    },
-    {
-      color: "Green",
-      value: "#BBFABBA6",
-    },
-    {
-      color: "Cyan",
-      value: "#ABF7F7A6",
-    },
-    {
-      color: "Blue",
-      value: "#ADCCFFA6",
-    },
-    {
-      color: "Purple",
-      value: "#D2B3FFA6",
-    },
-    {
-      color: "Grey",
-      value: "#CACFD9A6",
-    },
-  ],
+  highlighterMethods: "inline-styles",
+  highlighters: {
+    Pink: "#FFB8EBA6",
+    Red: "#FF5582A6",
+    Orange: "#FFB86CA6",
+    Yellow: "#FFF3A3A6",
+    Green: "#BBFABBA6",
+    Cyan: "#ABF7F7A6",
+    Blue: "#ADCCFFA6",
+    Purple: "#D2B3FFA6",
+    Grey: "#CACFD9A6",
+  },
+  highlighterOrder: [],
 };
+
+DEFAULT_SETTINGS.highlighterOrder = Object.keys(DEFAULT_SETTINGS.highlighters);
+
+export default DEFAULT_SETTINGS;

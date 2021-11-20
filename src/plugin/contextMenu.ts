@@ -20,7 +20,7 @@ export default function contextMenu(
       .setTitle("Highlight")
       .setIcon("highlightpen")
       .onClick(async (_) => {
-        highlighterMenu(app, plugin, settings);
+        highlighterMenu(app, plugin, settings, editor);
       });
   });
   if (selection) {

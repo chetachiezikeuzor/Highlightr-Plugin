@@ -73,8 +73,12 @@ button.HighlightrSettingsButton svg {
   display: flex;
 }
 
+.highlighter-settings-color,
+.highlighter-settings-value {
+  width: 42%;
+}
+
 .highlighter-settings-color {
-  width: 84%;
   color: var(--text-normal);
 }
 .highlighter-settings-value {
@@ -83,6 +87,7 @@ button.HighlightrSettingsButton svg {
 
 .highlighterplugin-setting-item {
   display: block;
+  grid-gap: 6px;
 }
 
 .highlighterplugin-setting-item .setting-item-control {

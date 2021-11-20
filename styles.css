@@ -1,5 +1,6 @@
 /*highlighter style*/
 /*lowlight*/
+.highlightr-lowlight mark,
 .highlightr-lowlight span.cm-highlight,
 .highlightr-lowlight .markdown-preview-view mark {
   --lowlight-background: var(--background-primary);
@@ -11,11 +12,13 @@
   ) !important;
 }
 
+.highlightr-lowlight .workspace-split.mod-left-split mark,
 .highlightr-lowlight .workspace-split.mod-left-split span.cm-highlight,
 .highlightr-lowlight
   .workspace-split.mod-left-split
   .markdown-preview-view
   mark,
+.highlightr-lowlight .workspace-split.mod-right-split mark,
 .highlightr-lowlight .workspace-split.mod-right-split span.cm-highlight,
 .highlightr-lowlight
   .workspace-split.mod-right-split
@@ -25,18 +28,21 @@
 }
 
 /*floating*/
+.highlightr-floating mark,
 .highlightr-floating span.cm-highlight,
 .highlightr-floating .markdown-preview-view mark {
-  --floating-background: var(--background-primary);
+  --background: var(--background-primary);
   border-radius: 0;
   padding-bottom: 5px;
   background-image: linear-gradient(
     360deg,
     rgba(255, 255, 255, 0) 28%,
-    var(--floating-background) 28%
+    var(--background) 28%
   ) !important;
 }
 
+.highlightr-floating .workspace-split.mod-left-split mark,
+.highlightr-floating .workspace-split.mod-left-split mark,
 .highlightr-floating .workspace-split.mod-left-split span.cm-highlight,
 .highlightr-floating
   .workspace-split.mod-left-split
@@ -47,10 +53,11 @@
   .workspace-split.mod-right-split
   .markdown-preview-view
   mark {
-  --floating-background: var(--background-secondary);
+  --background: var(--background-secondary);
 }
 
 /*rounded*/
+.highlightr-rounded mark,
 .highlightr-rounded .markdown-preview-view mark {
   margin: 0 -0.05em;
   padding: 0.125em 0.15em;
@@ -77,6 +84,7 @@
 }
 
 /*realistic*/
+.highlightr-realistic mark,
 .highlightr-realistic .markdown-preview-view mark {
   margin: 0 -0.05em;
   padding: 0.1em 0.4em;
@@ -115,6 +123,37 @@
   border-radius: 0 0.3em 0.8em 0;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
+}
+
+/**/
+
+button.copy-highlights {
+  padding: 4px 14px;
+  border-radius: 5px;
+  background-color: var(--interactive-accent);
+}
+
+.copy-highlights svg {
+  width: 1.3em;
+  height: 1.3em;
+  display: flex;
+}
+
+details summary.highlight-summary:before {
+  width: 2em;
+  height: 2em;
+  content: "☐";
+  font-size: 9px;
+  cursor: pointer;
+  margin-right: 5px;
+  display: inline-block;
+  vertical-align: 0.05em;
+  background-color: currentColor;
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><path fill="black" d="M10.707 17.707L16.414 12l-5.707-5.707l-1.414 1.414L13.586 12l-4.293 4.293z"></path></svg>');
+}
+
+details[open] summary.highlight-summary::before {
+  transform: rotate(90deg);
 }
 
 /*highlgihtr component*/
@@ -194,12 +233,10 @@ button.HighlightrSettingsButton svg {
   display: flex;
 }
 
-.highlighter-settings-color {
-  width: 84%;
-  color: var(--text-normal);
-}
+.highlighter-settings-color,
 .highlighter-settings-value {
-  display: none;
+  width: 42%;
+  color: var(--text-normal);
 }
 
 .highlighterplugin-setting-item {
@@ -209,7 +246,8 @@ button.HighlightrSettingsButton svg {
 .highlighterplugin-setting-item .setting-item-control {
   justify-content: space-between;
   margin-top: 12px;
-  align-items: normal;
+  align-items: initial;
+  grid-gap: 6px;
 }
 
 .modal.mod-settings
