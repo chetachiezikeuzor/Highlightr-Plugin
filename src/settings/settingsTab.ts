@@ -237,7 +237,7 @@ export class HighlightrSettingTab extends PluginSettingTab {
       new Setting(settingItem)
         .setClass("highlighter-setting-item")
         .setName(highlighter)
-        .setDesc(highlighter)
+        .setDesc(this.plugin.settings.highlighters[highlighter])
         .addButton((button) => {
           button
             .setClass("HighlightrSettingsButton")
