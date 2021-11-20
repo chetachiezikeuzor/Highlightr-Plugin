@@ -101,6 +101,7 @@ This plugin is not yet available in the Obsidian community plugin store. You can
 - [x] Unhighlight with command
 - [x] Undo highlight functionality
 - [x] Customize highlighter colors
+- [x] CSS classes setting
 
 ---
 
