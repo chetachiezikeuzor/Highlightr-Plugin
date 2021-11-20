@@ -10,7 +10,6 @@ export const HIGHLIGHTER_METHODS = ["css-classes", "inline-styles"];
 
 export interface Highlighters {
   [color: string]: string;
-  style?: string;
 }
 
 export interface HighlightrSettings {

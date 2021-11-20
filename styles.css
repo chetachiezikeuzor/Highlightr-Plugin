@@ -7,8 +7,8 @@
   border-radius: 0;
   background-image: linear-gradient(
     360deg,
-    rgba(255, 255, 255, 0) 48%,
-    var(--lowlight-background) 48%
+    rgba(255, 255, 255, 0) 40%,
+    var(--lowlight-background) 40%
   ) !important;
 }
 
@@ -27,33 +27,45 @@
   --lowlight-background: var(--background-secondary);
 }
 
+.highlightr-lowlight .admonition-content mark,
+.highlightr-lowlight .admonition-content span.cm-highlight,
+.highlightr-lowlight .admonition-content > .markdown-preview-view mark {
+  --lowlight-background: var(--background-primary-alt);
+}
+
 /*floating*/
 .highlightr-floating mark,
 .highlightr-floating span.cm-highlight,
 .highlightr-floating .markdown-preview-view mark {
-  --background: var(--background-primary);
+  --floating-background: var(--background-primary);
   border-radius: 0;
   padding-bottom: 5px;
   background-image: linear-gradient(
     360deg,
     rgba(255, 255, 255, 0) 28%,
-    var(--background) 28%
+    var(--floating-background) 28%
   ) !important;
 }
 
-.highlightr-floating .workspace-split.mod-left-split mark,
 .highlightr-floating .workspace-split.mod-left-split mark,
 .highlightr-floating .workspace-split.mod-left-split span.cm-highlight,
 .highlightr-floating
   .workspace-split.mod-left-split
   .markdown-preview-view
   mark,
+.highlightr-floating .workspace-split.mod-right-split mark,
 .highlightr-floating .workspace-split.mod-right-split span.cm-highlight,
 .highlightr-floating
   .workspace-split.mod-right-split
   .markdown-preview-view
   mark {
-  --background: var(--background-secondary);
+  --floating-background: var(--background-secondary);
+}
+
+.highlightr-floating .admonition-content mark,
+.highlightr-floating .admonition-content span.cm-highlight,
+.highlightr-floating .admonition-content > .markdown-preview-view mark {
+  --floating-background: var(--background-primary-alt);
 }
 
 /*rounded*/
