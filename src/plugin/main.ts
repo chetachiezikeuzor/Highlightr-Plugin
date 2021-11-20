@@ -57,6 +57,7 @@ export default class HighlightrPlugin extends Plugin {
     const currentStr = editor.getSelection();
     const newStr = currentStr
       .replace(/\<mark style.*?[^\>]\>/g, "")
+      .replace(/\<mark class.*?[^\>]\>/g, "")
       .replace(/\<\/mark>/g, "");
     editor.replaceSelection(newStr);
     editor.focus();
