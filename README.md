@@ -13,7 +13,7 @@ Highlightr is a simple plugin that brings a minimal and aesthetically pleasing h
 
 ## Demo
 
-<img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/highlightr-demo.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+<img src="https://user-images.githubusercontent.com/79069364/142739125-dad73e22-c6c4-4c49-8367-3e5a278659e7.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
 ## Ease of Use
 
@@ -21,27 +21,29 @@ Make beautiful highlights in your notes to supplement your note-taking. The colo
 
 ## How it Works
 
-Although the plugin supplies you with a beautiful assortment of colors, you are free to customize your highlighter menu as you wish! Create new highlighter colors by openning the plugin settings tab. There, you will see an input, color picker and an `add` button. Use the input to set the name of your brand new highlight, then use the color picker to pick the color for said highlight. Then use the `add` button to add the color into your highlighter menu.
+Although the plugin supplies you with a beautiful assortment of colors, you are free to customize your highlighter menu as you wish! Create new highlighter colors by openning the plugin settings tab. There, you will see an input, color picker and an `save` button. Use the input to set the name of your brand new highlight, then use the color picker to pick the color for said highlight. Then use the `save` button to save the new highlight into your highlighter menu.
 
-<img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/image2.png" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+<img src="https://user-images.githubusercontent.com/79069364/142739491-f6f75912-8689-4eef-a10e-67a820471d3c.png" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
-<img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/highlightrdemo1.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+<img src="https://user-images.githubusercontent.com/79069364/142739119-be46413e-905a-47bb-a23b-a63babc586e1.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
 Obsidian app version 12.8 adds a powerful custom context menu for easier note-taking. This plugin adds 2 menu items: Highlight and Unhighlight. These menu items can only be seen on text selection. Clicking "Highlight" will trigger the highlighting menu, allowing you to choose from an assortment of colors. When you choose a color, your selected text will then be wrapped within HTML mark tags, including a color for the background that corresponds with the color you have chosen. Clicking "Unhighlight" will replace text that is within the string `<`, `/>`. That means that you can use this to remove HTML markings, and not just highlight marks.
 
 <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/highlightr-demo.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
-<img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/image1.png" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+<img src="https://user-images.githubusercontent.com/79069364/142739490-e6824979-c339-449e-88c2-051979b7a6aa.png" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
 You can also use the new command added in version [1.0.0]() to open your highlighlighter menu. Now, you can open your highlighting menu with a hotkey of your choosing. You will be able to add hotkeys to each individual highlighter color from your highlighter menu, as the plugin creates command for each highlighter as well.
 
-<img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/highlighterdemo2.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+<img src="https://user-images.githubusercontent.com/79069364/142739122-aed7a0ee-e7d8-4595-90f5-9e809f44ef04.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
-<img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/highlightr.png" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+<img src="https://user-images.githubusercontent.com/79069364/142739489-8f1e3243-f07a-4b40-a9d7-9c36dd3a784b.png" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+
+Version [1.1.2]() add the ability to choose between inline CSS and CSS classes. This will create a new stylesheet that will how all of your highlight colors. Each class is named `hltr-${highlight_title_here}` and are generated from the titles by which you have named your highlights. Although inline CSS is highly encouraged, CSS classes will make your highlights much more flexible and easier to customize.
 
 ## Disclaimer
 
-This plugin will not work with [cMenu plugin](https://github.com/chetachiezikeuzor/cMenu-Plugin).
+The plugin component will not work with [cMenu plugin](https://github.com/chetachiezikeuzor/cMenu-Plugin).
 
 ## Installation
 
@@ -56,10 +58,10 @@ This plugin is not yet available in the Obsidian community plugin store. You can
 ##### Added
 
 - Added new setting to customize highlighter colors.
-  <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/highlightrdemo1.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+  <img src="https://user-images.githubusercontent.com/79069364/142739119-be46413e-905a-47bb-a23b-a63babc586e1.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 - Added command to open highlighter palette
 - Added function to add commands per highlighter
-  <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/highlighterdemo2.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+  <img src="https://user-images.githubusercontent.com/79069364/142739122-aed7a0ee-e7d8-4595-90f5-9e809f44ef04.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
 ### [1.0.1](https://github.com/chetachiezikeuzor/Highlightr-Plugin/releases/tag/1.0.1) - Oct 12, 2021
 
@@ -76,7 +78,7 @@ This plugin is not yet available in the Obsidian community plugin store. You can
 ##### Added
 
 - Added command to remove highlight (`<mark>`)
-  <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/removehighlightcommand.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+  <img src="https://user-images.githubusercontent.com/79069364/142739131-b7bd43da-7d76-4c51-bd21-935f0adf5807.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
 ##### Changed
 
