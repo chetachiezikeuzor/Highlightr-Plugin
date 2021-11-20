@@ -2,12 +2,12 @@ import type HighlightrPlugin from "src/plugin/main";
 import { App, Menu, MarkdownView, Notice, Editor } from "obsidian";
 import { HighlightrSettings } from "src/settings/settingsData";
 
-export default function highlighterMenu(
+const highlighterMenu = (
   app: App,
   plugin: HighlightrPlugin,
   settings: HighlightrSettings,
   editor: Editor
-) {
+): void => {
   const activeView = app.workspace.getActiveViewOfType(MarkdownView);
 
   if (activeView && activeView.editor.hasFocus()) {
@@ -50,10 +50,12 @@ export default function highlighterMenu(
     });
 
     menu.showAtPosition({
-      x: selectionRect.right + 5,
-      y: selectionRect.top + 15,
+      x: selectionRect.right - 25,
+      y: selectionRect.top + 20,
     });
   } else {
     new Notice("Focus must be in editor");
   }
-}
+};
+
+export default highlighterMenu;
