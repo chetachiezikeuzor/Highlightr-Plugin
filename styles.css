@@ -236,7 +236,6 @@ button.HighlightrSettingsButton {
   padding: 4px 14px;
   border-radius: 6px;
   height: fit-content;
-  align-self: center;
 }
 
 button.HighlightrSettingsButton svg {
@@ -258,7 +257,8 @@ button.HighlightrSettingsButton svg {
 .highlighterplugin-setting-item .setting-item-control {
   justify-content: space-between;
   margin-top: 12px;
-  align-items: initial;
+  align-content: center;
+  align-items: flex-end;
   grid-gap: 6px;
 }
 
@@ -284,6 +284,7 @@ button:not(.mod-cta):not(.mod-warning).HighlightrSettingsButton.HighlightrSettin
 .highlighter-item-draggable {
   cursor: grab;
   display: grid;
+  grid-gap: 8px;
   grid-template-columns: 0.5fr 7fr;
   align-items: center;
   border-top: 1px solid var(--background-modifier-border);

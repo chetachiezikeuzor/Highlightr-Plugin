@@ -6,6 +6,8 @@ import { HighlightrSettings } from "../settings/settingsData";
 import DEFAULT_SETTINGS from "../settings/settingsData";
 import contextMenu from "src/plugin/contextMenu";
 import highlighterMenu from "src/ui/highlighterMenu";
+import { addIcon } from "obsidian";
+import { createHighlighterIcons } from "src/icons/customIcons";
 
 import { createStyles } from "src/utils/createStyles";
 export default class HighlightrPlugin extends Plugin {
@@ -16,9 +18,12 @@ export default class HighlightrPlugin extends Plugin {
   async onload() {
     console.log("Highlightr v" + this.manifest.version + " loaded");
     addIcons();
+
     await this.loadSettings();
     this.app.workspace.onLayoutReady(() => {
       this.reloadStyles(this.settings);
+      //console.log(this.createHighlighterIcons(this.settings, this));
+      createHighlighterIcons(this.settings, this);
     });
     this.registerEvent(
       this.app.workspace.on("editor-menu", this.handleHighlighterMenu)
@@ -38,9 +43,47 @@ export default class HighlightrPlugin extends Plugin {
     addEventListener("Highlightr-NewCommand", () => {
       this.reloadStyles(this.settings);
       this.generateCommands(this.editor);
+      createHighlighterIcons(this.settings, this);
     });
     this.generateCommands(this.editor);
+    this.autoHighlight();
     this.refresh();
+  }
+
+  autoHighlight() {
+    let flag = 0;
+    let docEl = document;
+    docEl.addEventListener(
+      "mousedown",
+      function () {
+        flag = 0;
+      },
+      false
+    );
+    docEl.addEventListener(
+      "mousemove",
+      function () {
+        flag = 1;
+      },
+      false
+    );
+    docEl.addEventListener(
+      "mouseup",
+      function () {
+        if (flag === 0) {
+        } else if (flag === 1) {
+          function getSelText(app: App, editor: Editor) {
+            let sel = editor.getSelection();
+            if (sel) {
+              (app as any).commands.executeCommandById(
+                `highlightr-plugin:Pink`
+              );
+            }
+          }
+        }
+      },
+      false
+    );
   }
 
   reloadStyles(settings: HighlightrSettings) {
@@ -144,10 +187,11 @@ export default class HighlightrPlugin extends Plugin {
         },
       };
       Object.keys(commandsMap).forEach((type) => {
+        let highlighterpen = `highlightpen-${highlighterKey}`.toLowerCase();
         this.addCommand({
           id: highlighterKey,
           name: highlighterKey,
-          icon: `highlightpen`,
+          icon: highlighterpen,
           editorCallback: async (editor: Editor) => {
             applyCommand(commandsMap[type], editor);
             await wait(10);
