@@ -33,7 +33,7 @@ export class HighlightrSettingTab extends PluginSettingTab {
     new Setting(containerEl)
       .setName("Choose highlight method")
       .setDesc(
-        `Choose between highlighting with inline CSS or CSS classes. Please note that that there are pros and cons to both choices. Inline CSS will keep you from being reliant on external CSS files if you choose to export your notes. CSS classes are more flexible and easier to customize.`
+        `Choose between highlighting with inline CSS or CSS classes. Please note that there are pros and cons to both choices. Inline CSS will keep you from being reliant on external CSS files if you choose to export your notes. CSS classes are more flexible and easier to customize.`
       )
       .addDropdown((dropdown) => {
         let methods: Record<string, string> = {};
