@@ -22,7 +22,6 @@ export default class HighlightrPlugin extends Plugin {
     await this.loadSettings();
     this.app.workspace.onLayoutReady(() => {
       this.reloadStyles(this.settings);
-      console.log(createHighlighterIcons(this.settings, this));
       createHighlighterIcons(this.settings, this);
     });
     this.registerEvent(
