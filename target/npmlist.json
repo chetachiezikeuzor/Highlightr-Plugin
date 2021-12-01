@@ -1,0 +1,1 @@
+{"version":"1.1.1","name":"highlightr-plugin","dependencies":{"@simonwep/pickr":{"version":"1.8.2"},"copy":{"version":"0.0.1"},"dotenv":{"version":"10.0.0"},"react":{"version":"17.0.2"},"rollup-plugin-copy":{"version":"3.4.0"},"rollup-plugin-css-only":{"version":"3.1.0"},"sortablejs":{"version":"1.14.0"}}}

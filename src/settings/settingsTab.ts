@@ -175,7 +175,7 @@ export class HighlightrSettingTab extends PluginSettingTab {
         button
           .setClass("HighlightrSettingsButton")
           .setClass("HighlightrSettingsButtonAdd")
-          .setIcon("highlighterSave")
+          .setIcon("highlightr-save")
           .setTooltip("Save")
           .onClick(async (buttonEl: any) => {
             let color = colorInput.inputEl.value;
@@ -242,7 +242,7 @@ export class HighlightrSettingTab extends PluginSettingTab {
           button
             .setClass("HighlightrSettingsButton")
             .setClass("HighlightrSettingsButtonDelete")
-            .setIcon("highlighterDelete")
+            .setIcon("highlightr-delete")
             .setTooltip("Remove")
             .onClick(async () => {
               new Notice(`${highlighter} highlight deleted`);

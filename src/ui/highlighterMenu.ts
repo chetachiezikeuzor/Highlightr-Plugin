@@ -1,5 +1,5 @@
 import type HighlightrPlugin from "src/plugin/main";
-import { App, Menu, MarkdownView, Notice, Editor } from "obsidian";
+import { App, Menu, Notice, Editor } from "obsidian";
 import { HighlightrSettings } from "src/settings/settingsData";
 
 const highlighterMenu = (
@@ -8,9 +8,7 @@ const highlighterMenu = (
   settings: HighlightrSettings,
   editor: Editor
 ): void => {
-  const activeView = app.workspace.getActiveViewOfType(MarkdownView);
-
-  if (activeView && activeView.editor.hasFocus()) {
+  if (editor && editor.hasFocus()) {
     const selection = document.getSelection();
     const selectionContainer = selection.getRangeAt(0)
       .commonAncestorContainer as HTMLElement;

@@ -1,4 +1,4 @@
-import { Editor, App, Menu, Plugin, WorkspaceLeaf } from "obsidian";
+import { Editor, App, Menu, Plugin, PluginManifest } from "obsidian";
 import { wait } from "src/utils/util";
 import addIcons from "src/icons/customIcons";
 import { HighlightrSettingTab } from "../settings/settingsTab";
@@ -6,13 +6,13 @@ import { HighlightrSettings } from "../settings/settingsData";
 import DEFAULT_SETTINGS from "../settings/settingsData";
 import contextMenu from "src/plugin/contextMenu";
 import highlighterMenu from "src/ui/highlighterMenu";
-import { addIcon } from "obsidian";
 import { createHighlighterIcons } from "src/icons/customIcons";
 
 import { createStyles } from "src/utils/createStyles";
 export default class HighlightrPlugin extends Plugin {
   app: App;
   editor: Editor;
+  manifest: PluginManifest;
   settings: HighlightrSettings;
 
   async onload() {
@@ -22,20 +22,20 @@ export default class HighlightrPlugin extends Plugin {
     await this.loadSettings();
     this.app.workspace.onLayoutReady(() => {
       this.reloadStyles(this.settings);
-      //console.log(this.createHighlighterIcons(this.settings, this));
+      console.log(createHighlighterIcons(this.settings, this));
       createHighlighterIcons(this.settings, this);
     });
     this.registerEvent(
-      this.app.workspace.on("editor-menu", this.handleHighlighterMenu)
+      this.app.workspace.on("editor-menu", this.handleHighlighterInContextMenu)
     );
     this.addSettingTab(new HighlightrSettingTab(this.app, this));
     this.addCommand({
       id: "highlighter-plugin-menu",
       name: "Open Highlightr",
-      icon: "highlightpen",
-      callback: async () => {
+      icon: "highlightr-pen",
+      editorCallback: (editor) => {
         !document.querySelector(".menu.highlighterContainer")
-          ? highlighterMenu(this.app, this, this.settings, this.editor)
+          ? highlighterMenu(this.app, this, this.settings, editor)
           : true;
       },
     });
@@ -46,44 +46,7 @@ export default class HighlightrPlugin extends Plugin {
       createHighlighterIcons(this.settings, this);
     });
     this.generateCommands(this.editor);
-    this.autoHighlight();
     this.refresh();
-  }
-
-  autoHighlight() {
-    let flag = 0;
-    let docEl = document;
-    docEl.addEventListener(
-      "mousedown",
-      function () {
-        flag = 0;
-      },
-      false
-    );
-    docEl.addEventListener(
-      "mousemove",
-      function () {
-        flag = 1;
-      },
-      false
-    );
-    docEl.addEventListener(
-      "mouseup",
-      function () {
-        if (flag === 0) {
-        } else if (flag === 1) {
-          function getSelText(app: App, editor: Editor) {
-            let sel = editor.getSelection();
-            if (sel) {
-              (app as any).commands.executeCommandById(
-                `highlightr-plugin:Pink`
-              );
-            }
-          }
-        }
-      },
-      false
-    );
   }
 
   reloadStyles(settings: HighlightrSettings) {
@@ -187,7 +150,7 @@ export default class HighlightrPlugin extends Plugin {
         },
       };
       Object.keys(commandsMap).forEach((type) => {
-        let highlighterpen = `highlightpen-${highlighterKey}`.toLowerCase();
+        let highlighterpen = `highlightr-pen-${highlighterKey}`.toLowerCase();
         this.addCommand({
           id: highlighterKey,
           name: highlighterKey,
@@ -202,7 +165,7 @@ export default class HighlightrPlugin extends Plugin {
       this.addCommand({
         id: "unhighlight",
         name: "Remove highlight",
-        icon: "eraser",
+        icon: "highlightr-eraser",
         editorCallback: async (editor: Editor) => {
           this.eraseHighlight(editor);
           editor.focus();
@@ -238,7 +201,7 @@ export default class HighlightrPlugin extends Plugin {
     console.log("Highlightr unloaded");
   }
 
-  handleHighlighterMenu = (menu: Menu, editor: Editor): void => {
+  handleHighlighterInContextMenu = (menu: Menu, editor: Editor): void => {
     contextMenu(this.app, menu, editor, this, this.settings);
   };
 
