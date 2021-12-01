@@ -29,7 +29,7 @@ Although the plugin supplies you with a beautiful assortment of colors, you are 
 
 Obsidian app version 12.8 adds a powerful custom context menu for easier note-taking. This plugin adds 2 menu items: Highlight and Unhighlight. These menu items can only be seen on text selection. Clicking "Highlight" will trigger the highlighting menu, allowing you to choose from an assortment of colors. When you choose a color, your selected text will then be wrapped within HTML mark tags, including a color for the background that corresponds with the color you have chosen. Clicking "Unhighlight" will replace text that is within the string `<`, `/>`. That means that you can use this to remove HTML markings, and not just highlight marks.
 
-<img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/highlightr-demo.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+<img alt="highlightr-demo" src="https://user-images.githubusercontent.com/79069364/144176804-c63a7e8d-f27c-48a6-bfeb-484cfe7d44e6.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
 <img src="https://user-images.githubusercontent.com/79069364/142739490-e6824979-c339-449e-88c2-051979b7a6aa.png" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
@@ -83,16 +83,16 @@ This plugin is not yet available in the Obsidian community plugin store. You can
 ##### Changed
 
 - Updated undo highlight functionality
-  <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/undohighlight.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+  <img alt="undohighlight" src="https://user-images.githubusercontent.com/79069364/144176697-379340a7-da36-485e-91ed-853dbfde5ab6.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 - Creating empty highlight now adds space at the end
-  <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/addedspace.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+  <img alt="addedspace" src="https://user-images.githubusercontent.com/79069364/144176500-79484143-b329-488b-855d-c46a42ece35c.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
 ### [1.1.1](https://github.com/chetachiezikeuzor/Highlightr-Plugin/releases/tag/1.1.1) - Oct 15, 2021
 
 ##### Changed
 
 - Updated logic to cursor repositioning
-  <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/betterCursorPos.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
+  <img alt="betterCursorPos" src="https://user-images.githubusercontent.com/79069364/144176292-4df0ef0f-5478-4a31-9266-1852e7189026.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
 ---
 
