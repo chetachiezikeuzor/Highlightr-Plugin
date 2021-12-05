@@ -117,3 +117,8 @@ Created with ❤️ by Chetachi
 
 <a href="https://paypal.me/chelseaezikeuzor">
 <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/paypal.svg" height="70"></a>
+
+<br/>
+
+<a href="https://ko-fi.com/chetachi">
+<img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/kofi.svg" height="50"></a>
