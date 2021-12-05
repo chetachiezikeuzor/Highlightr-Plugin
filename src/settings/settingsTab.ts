@@ -178,7 +178,7 @@ export class HighlightrSettingTab extends PluginSettingTab {
           .setIcon("highlightr-save")
           .setTooltip("Save")
           .onClick(async (buttonEl: any) => {
-            let color = colorInput.inputEl.value;
+            let color = colorInput.inputEl.value.replace(" ", "-");
             let value = valueInput.inputEl.value;
 
             if (color && value) {
