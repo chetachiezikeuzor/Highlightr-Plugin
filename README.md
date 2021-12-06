@@ -121,4 +121,4 @@ Created with ❤️ by Chetachi
 <br/>
 
 <a href="https://ko-fi.com/chetachi">
-<img src="https://raw.githubusercontent.com/chetachiezikeuzor/MySnippets-Plugin/master/assets/kofi_blue.svg" height="50"></a>
+<img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/kofi_blue.svg" height="50"></a>
