@@ -262,25 +262,23 @@ export class HighlightrSettingTab extends PluginSettingTab {
       const a = createEl("a");
       a.setAttribute("href", "");
     });
-    const msDonationDiv = containerEl.createEl("div", {
-      cls: "msDonationSection",
+    const hltrDonationDiv = containerEl.createEl("div", {
+      cls: "hltrDonationSection",
     });
 
-    const credit = createEl("p");
     const donateText = createEl("p");
     donateText.appendText(
       "If you like this Plugin and are considering donating to support continued development, use the buttons below!"
     );
-    credit.appendText("Created with ❤️ by Chetachi");
-    credit.setAttribute("style", "color: var(--text-muted)");
-    msDonationDiv.appendChild(donateText);
-    msDonationDiv.appendChild(
+
+    hltrDonationDiv.appendChild(donateText);
+    hltrDonationDiv.appendChild(
       paypalButton("https://paypal.me/chelseaezikeuzor")
     );
-    msDonationDiv.appendChild(
+    hltrDonationDiv.appendChild(
       buyMeACoffeeButton("https://www.buymeacoffee.com/chetachi")
     );
-    msDonationDiv.appendChild(credit);
+    hltrDonationDiv.appendChild(kofiButton("https://ko-fi.com/chetachi"));
   }
 }
 
@@ -304,5 +302,13 @@ const paypalButton = (link: string): HTMLElement => {
   <path fill="#222D65" d="M21.754 7.151a9.757 9.757 0 0 0-1.203-.267 15.284 15.284 0 0 0-2.426-.177h-7.352a1.172 1.172 0 0 0-1.159.992L8.05 17.605l-.045.289a1.336 1.336 0 0 1 1.321-1.132h2.752c5.405 0 9.637-2.195 10.874-8.545.037-.188.068-.371.096-.55a6.594 6.594 0 0 0-1.017-.429 9.045 9.045 0 0 0-.277-.087z"></path>
   <path fill="#253B80" d="M9.614 7.699a1.169 1.169 0 0 1 1.159-.991h7.352c.871 0 1.684.057 2.426.177a9.757 9.757 0 0 1 1.481.353c.365.121.704.264 1.017.429.368-2.347-.003-3.945-1.272-5.392C20.378.682 17.853 0 14.622 0h-9.38c-.66 0-1.223.48-1.325 1.133L.01 25.898a.806.806 0 0 0 .795.932h5.791l1.454-9.225 1.564-9.906z"></path>
   </svg>`;
+  return a;
+};
+
+const kofiButton = (link: string): HTMLElement => {
+  const a = createEl("a");
+  a.setAttribute("href", link);
+  a.addClass("buymeacoffee-chetachi-img");
+  a.innerHTML = `<img src="https://raw.githubusercontent.com/chetachiezikeuzor/MySnippets-Plugin/master/assets/kofi.svg" height="50">`;
   return a;
 };
