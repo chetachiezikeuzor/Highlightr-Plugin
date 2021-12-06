@@ -286,7 +286,7 @@ const buyMeACoffeeButton = (link: string): HTMLElement => {
   const a = createEl("a");
   a.setAttribute("href", link);
   a.addClass("buymeacoffee-chetachi-img");
-  a.innerHTML = `<img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=chetachi&button_colour=e3e7ef&font_colour=262626&font_family=Inter&outline_colour=262626&coffee_colour=ff0000" height="42px"> `;
+  a.innerHTML = `<img src="https://img.buymeacoffee.com/button-api/?text=Buy me a coffee&emoji=&slug=chetachi&button_colour=e3e7ef&font_colour=262626&font_family=Poppins&outline_colour=262626&coffee_colour=ff0000" height="42px"> `;
   return a;
 };
 
