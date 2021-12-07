@@ -1,18 +1,20 @@
 import type HighlightrPlugin from "src/plugin/main";
 import { App, Menu, Notice, Editor } from "obsidian";
 import { HighlightrSettings } from "src/settings/settingsData";
+import { Coords } from "src/settings/types";
 
 const highlighterMenu = (
   app: App,
   plugin: HighlightrPlugin,
   settings: HighlightrSettings,
-  editor: Editor
+  editor: Editor,
+  event: MouseEvent
 ): void => {
   if (editor && editor.hasFocus()) {
-    const selection = document.getSelection();
-    const selectionContainer = selection.getRangeAt(0)
-      .commonAncestorContainer as HTMLElement;
-    const selectionRect = selectionContainer.getClientRects()[0];
+    const cursor = editor.getCursor("from");
+    let coords: Coords;
+    const editorCli = editor as any;
+
     const menu = new Menu(plugin.app).addItem((item) => {
       const itemDom = (item as any).dom as HTMLElement;
       itemDom.setAttribute("style", "display: none");
@@ -47,9 +49,19 @@ const highlighterMenu = (
       colorButtonText.setAttribute("style", "font-weight: 400;");
     });
 
+    if (editorCli.cursorCoords) {
+      coords = editorCli.cursorCoords(true, "window");
+    } else if (editorCli.coordsAtPos) {
+      const offset = editor.posToOffset(cursor);
+      coords =
+        editorCli.cm.coordsAtPos?.(offset) ?? editorCli.coordsAtPos(offset);
+    } else {
+      return;
+    }
+
     menu.showAtPosition({
-      x: selectionRect.right - 25,
-      y: selectionRect.top + 20,
+      x: coords.right + 25,
+      y: coords.top + 20,
     });
   } else {
     new Notice("Focus must be in editor");
