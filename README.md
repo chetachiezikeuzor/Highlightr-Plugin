@@ -5,9 +5,7 @@
 
 <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/Highlightr%20Demo%20Header.png" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
-### Status: This plugin will be available in Obsidian plugin store once it has been accepted
-
-_Sigh_. Don't you wish you could satiate your creative drive by highlighting your notes? I mean, yes we can use the markdown syntax for creating highlights, but what about custom colors?? Oh yea, we know all about those cool CSS hacks that would "support" this, but what ever happened to avoiding proprietary formatting? Ok, well we could just use HTML `<mark>` tags right? But jeez, it's such a pain to type out! Alright alright, how about a Templater template? [Kinda like this one](https://www.reddit.com/r/ObsidianMD/comments/nu0olr/multicolored_highlighting_in_obsidian/). But this just doesn't feel… native. Well, looks like Highlightr is here to save the day!!!
+_Sigh_. Don't you wish you could satiate your creative drive by highlighting your notes? I mean, yes we can use the markdown syntax for creating highlights, but what about custom colors?? Oh yeah, we know all about those cool CSS hacks that would "support" this, but whatever happened to avoiding proprietary formatting? Ok, well we could just use HTML `<mark>` tags right? But jeez, it's such a pain to type out! Alright, alright, how about a Templater template? [Kinda like this one](https://www.reddit.com/r/ObsidianMD/comments/nu0olr/multicolored_highlighting_in_obsidian/). But this just doesn't feel… native. Well, looks like Highlightr is here to save the day!!!
 
 Highlightr is a simple plugin that brings a minimal and aesthetically pleasing highlighting menu into the Obsidian note-taking app. This plugin makes color-coded highlighting much easier with a user-friendly assortment of highlight colors.
 
@@ -21,7 +19,7 @@ Make beautiful highlights in your notes to supplement your note-taking. The colo
 
 ## How it Works
 
-Although the plugin supplies you with a beautiful assortment of colors, you are free to customize your highlighter menu as you wish! Create new highlighter colors by openning the plugin settings tab. There, you will see an input, color picker and an `save` button. Use the input to set the name of your brand new highlight, then use the color picker to pick the color for said highlight. Then use the `save` button to save the new highlight into your highlighter menu.
+Although the plugin supplies you with a beautiful assortment of colors, you are free to customize your highlighter menu as you wish! Create new highlighter colors by openning the plugin settings tab. There, you will see an input, color picker and a `save` button. Use the input to set the name of your brand new highlight, then use the color picker to pick the color for said highlight. Then use the `save` button to save the new highlight into your highlighter menu.
 
 <img src="https://user-images.githubusercontent.com/79069364/142739491-f6f75912-8689-4eef-a10e-67a820471d3c.png" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
@@ -33,13 +31,13 @@ Obsidian app version 12.8 adds a powerful custom context menu for easier note-ta
 
 <img src="https://user-images.githubusercontent.com/79069364/142739490-e6824979-c339-449e-88c2-051979b7a6aa.png" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
-You can also use the new command added in version [1.0.0]() to open your highlighlighter menu. Now, you can open your highlighting menu with a hotkey of your choosing. You will be able to add hotkeys to each individual highlighter color from your highlighter menu, as the plugin creates command for each highlighter as well.
+You can also use the new command added in version [1.0.0]() to open your highlighlighter menu. Now, you can open your highlighting menu with a hotkey of your choosing. You will be able to add hotkeys to each individual highlighter color from your highlighter menu, as the plugin creates commands for each highlighter as well.
 
 <img src="https://user-images.githubusercontent.com/79069364/142739122-aed7a0ee-e7d8-4595-90f5-9e809f44ef04.gif" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
 <img src="https://user-images.githubusercontent.com/79069364/142739489-8f1e3243-f07a-4b40-a9d7-9c36dd3a784b.png" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
-Version [1.1.2]() add the ability to choose between inline CSS and CSS classes. This will create a new stylesheet that will how all of your highlight colors. Each class is named `hltr-${highlight_title_here}` and are generated from the titles by which you have named your highlights. Although inline CSS is highly encouraged, CSS classes will make your highlights much more flexible and easier to customize.
+Version [1.1.2]() adds the ability to choose between inline CSS and CSS classes. This will create a new stylesheet that will how all of your highlight colors. Each class is named `hltr-${highlight_title_here}` and are generated from the titles by which you have named your highlights. Although inline CSS is highly encouraged, CSS classes will make your highlights much more flexible and easier to customize.
 
 ## Disclaimer
 
@@ -47,7 +45,7 @@ The plugin component will not work with [cMenu plugin](https://github.com/chetac
 
 ## Installation
 
-This plugin is not yet available in the Obsidian community plugin store. You can install it from there once it has been accepted. For a manual installation, you can download the necessary files and place them within your plugins folder.
+This plugin is available in the Obsidian community plugin store. You can install it from there. For a manual installation, you can download the necessary files and place them within your plugins folder.
 
 ---
 
