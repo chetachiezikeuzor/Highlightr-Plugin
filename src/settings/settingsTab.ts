@@ -8,7 +8,7 @@ import {
 } from "obsidian";
 import Pickr from "@simonwep/pickr";
 import Sortable from "sortablejs";
-import { HIGHLIGHTER_METHODS, HIGHLIGHTER_STYLES } from "./settingsData";
+import { HIGHLIGHTER_METHODS, HIGHLIGHTER_STYLES, HIGHLIGHTER_TARGETS } from "./settingsData";
 import { setAttributes } from "src/utils/setAttributes";
 
 export class HighlightrSettingTab extends PluginSettingTab {
@@ -52,6 +52,28 @@ export class HighlightrSettingTab extends PluginSettingTab {
           });
       });
 
+      new Setting(containerEl)
+      .setName("Choose highlight target")
+      .setDesc(
+        `Select what should be hightlighted - text or background.`
+      )
+      .addDropdown((dropdown) => {
+        let targets: Record<string, string> = {};
+        HIGHLIGHTER_TARGETS.map((target) => (targets[target] = target));
+        dropdown.addOptions(targets);
+        dropdown
+          .setValue(this.plugin.settings.highlighterTarget)
+          .onChange((highlightrTarget) => {
+            this.plugin.settings.highlighterTarget = highlightrTarget;
+            setTimeout(() => {
+              dispatchEvent(new Event("Highlightr-NewCommand"));
+            }, 100);
+            this.plugin.saveSettings();
+            this.plugin.saveData(this.plugin.settings);
+            this.display();
+          });
+      });
+
     const stylesSetting = new Setting(containerEl);
 
     stylesSetting
@@ -77,9 +99,9 @@ export class HighlightrSettingTab extends PluginSettingTab {
       const d = createEl("p");
       d.setAttribute("style", "font-size: .925em; margin-top: 12px;");
       d.innerHTML = `
-      <span style="background:#FFB7EACC;padding: .125em .125em;--lowlight-background: var(--background-primary);border-radius: 0;background-image: linear-gradient(360deg,rgba(255, 255, 255, 0) 40%,var(--lowlight-background) 40%) !important;">Lowlight</span> 
-      <span style="background:#93C0FFCC;--floating-background: var(--background-primary);border-radius: 0;padding-bottom: 5px;background-image: linear-gradient(360deg,rgba(255, 255, 255, 0) 28%,var(--floating-background) 28%) !important;">Floating</span> 
-      <span style="background:#9CF09CCC;margin: 0 -0.05em;padding: 0.1em 0.4em;border-radius: 0.8em 0.3em;-webkit-box-decoration-break: clone;box-decoration-break: clone;text-shadow: 0 0 0.75em var(--background-primary-alt);">Realistic</span> 
+      <span style="background:#FFB7EACC;padding: .125em .125em;--lowlight-background: var(--background-primary);border-radius: 0;background-image: linear-gradient(360deg,rgba(255, 255, 255, 0) 40%,var(--lowlight-background) 40%) !important;">Lowlight</span>
+      <span style="background:#93C0FFCC;--floating-background: var(--background-primary);border-radius: 0;padding-bottom: 5px;background-image: linear-gradient(360deg,rgba(255, 255, 255, 0) 28%,var(--floating-background) 28%) !important;">Floating</span>
+      <span style="background:#9CF09CCC;margin: 0 -0.05em;padding: 0.1em 0.4em;border-radius: 0.8em 0.3em;-webkit-box-decoration-break: clone;box-decoration-break: clone;text-shadow: 0 0 0.75em var(--background-primary-alt);">Realistic</span>
       <span style="background:#CCA9FFCC;margin: 0 -0.05em;padding: 0.125em 0.15em;border-radius: 0.2em;-webkit-box-decoration-break: clone;box-decoration-break: clone;">Rounded</span>`;
       return d;
     };

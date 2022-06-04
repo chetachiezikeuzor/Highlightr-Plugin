@@ -8,7 +8,7 @@ import contextMenu from "src/plugin/contextMenu";
 import highlighterMenu from "src/ui/highlighterMenu";
 import { createHighlighterIcons } from "src/icons/customIcons";
 
-import { createStyles } from "src/utils/createStyles";
+import { createStyles, getStyles } from "src/utils/createStyles";
 export default class HighlightrPlugin extends Plugin {
   app: App;
   editor: Editor;
@@ -144,7 +144,7 @@ export default class HighlightrPlugin extends Plugin {
           prefix:
             this.settings.highlighterMethods === "css-classes"
               ? `<mark class="hltr-${highlighterKey.toLowerCase()}">`
-              : `<mark style="background: ${this.settings.highlighters[highlighterKey]};">`,
+              : `<mark style="${getStyles(this.settings, highlighterKey)}">`,
           suffix: "</mark>",
         },
       };

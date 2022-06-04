@@ -7,6 +7,7 @@ export const HIGHLIGHTER_STYLES = [
 ];
 
 export const HIGHLIGHTER_METHODS = ["css-classes", "inline-styles"];
+export const HIGHLIGHTER_TARGETS = ["background", "text", "bold-text"];
 
 export interface Highlighters {
   [color: string]: string;
@@ -15,6 +16,7 @@ export interface Highlighters {
 export interface HighlightrSettings {
   highlighterStyle: string;
   highlighterMethods: string;
+  highlighterTarget: string;
   highlighters: Highlighters;
   highlighterOrder: string[];
 }
@@ -22,6 +24,7 @@ export interface HighlightrSettings {
 const DEFAULT_SETTINGS: HighlightrSettings = {
   highlighterStyle: "none",
   highlighterMethods: "inline-styles",
+  highlighterTarget: "background",
   highlighters: {
     Pink: "#FFB8EBA6",
     Red: "#FF5582A6",
