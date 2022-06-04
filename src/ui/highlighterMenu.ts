@@ -8,7 +8,7 @@ const highlighterMenu = (
   plugin: HighlightrPlugin,
   settings: HighlightrSettings,
   editor: Editor,
-  event: MouseEvent
+  event?: MouseEvent
 ): void => {
   if (editor && editor.hasFocus()) {
     const cursor = editor.getCursor("from");

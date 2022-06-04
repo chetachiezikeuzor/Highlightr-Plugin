@@ -1,5 +1,6 @@
 import { HighlightrSettings } from "src/settings/settingsData";
 import { setAttributes } from "./setAttributes";
+import Color from 'color';
 
 function addNewStyle(selector: any, style: any, sheet: HTMLElement) {
   sheet.textContent += selector + `{\n ${style}\n}\n\n`;
@@ -19,8 +20,15 @@ export function createStyles(settings: HighlightrSettings) {
     let colorLowercase = highlighter.toLowerCase();
     addNewStyle(
       `.hltr-${colorLowercase},\nmark.hltr-${colorLowercase},\n.markdown-preview-view mark.hltr-${colorLowercase}`,
-      `background: ${settings.highlighters[highlighter]};`,
+      getStyles(settings, highlighter),
       styleSheet
     );
   });
+}
+
+export function getStyles(settings: HighlightrSettings, highlighter: string) {
+  return settings.highlighterTarget === 'background' ?
+    `background: ${settings.highlighters[highlighter]};`
+    :
+    `color: ${Color(settings.highlighters[highlighter]).opaquer(1)}; ${settings.highlighterTarget === 'bold-text' ? 'font-weight: bold;' : ''} background: transparent;`
 }
