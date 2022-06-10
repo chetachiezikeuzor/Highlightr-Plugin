@@ -116,13 +116,7 @@ export default class HighlightrPlugin extends Plugin {
           }
         }
 
-        (selectedText && sufFirst === " ") ||
-        (!selectedText && sufFirst === " ")
-          ? editor.replaceSelection(`${prefix}${selectedText}${suffix}`)
-          : selectedText && sufFirst !== " "
-          ? editor.replaceSelection(`${prefix}${selectedText}${suffix} `)
-          : editor.replaceSelection(`${prefix}${selectedText}${suffix} `);
-
+        editor.replaceSelection(`${prefix}${selectedText}${suffix}`);
         return setCursor(1);
       };
 
