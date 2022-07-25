@@ -9,6 +9,7 @@ import highlighterMenu from "src/ui/highlighterMenu";
 import { createHighlighterIcons } from "src/icons/customIcons";
 
 import { createStyles } from "src/utils/createStyles";
+import { log } from "console";
 export default class HighlightrPlugin extends Plugin {
   app: App;
   editor: Editor;
@@ -33,11 +34,22 @@ export default class HighlightrPlugin extends Plugin {
       name: "Open Highlightr",
       icon: "highlightr-pen",
       editorCallback: (editor) => {
-        !document.querySelector(".menu.highlighterContainer")
-          ? highlighterMenu(this.app, this, this.settings, editor)
-          : true;
+        let obj = document.querySelector(".colorboard");
+        if (obj == null) {
+          highlighterMenu(this.app, this, this.settings, editor)
+        } else {
+          obj.parentNode.removeChild(obj);
+        }
       },
     });
+
+    let rightBarDOM = document.querySelector(".workspace-split, .mod-horizontal, .mod-right-split");
+    rightBarDOM.addEventListener("resize", function (e) {
+      console.log("resize");
+      console.log(e);
+
+    })
+
 
     addEventListener("Highlightr-NewCommand", () => {
       this.reloadStyles(this.settings);
@@ -117,11 +129,11 @@ export default class HighlightrPlugin extends Plugin {
         }
 
         (selectedText && sufFirst === " ") ||
-        (!selectedText && sufFirst === " ")
+          (!selectedText && sufFirst === " ")
           ? editor.replaceSelection(`${prefix}${selectedText}${suffix}`)
           : selectedText && sufFirst !== " "
-          ? editor.replaceSelection(`${prefix}${selectedText}${suffix} `)
-          : editor.replaceSelection(`${prefix}${selectedText}${suffix} `);
+            ? editor.replaceSelection(`${prefix}${selectedText}${suffix} `)
+            : editor.replaceSelection(`${prefix}${selectedText}${suffix} `);
 
         return setCursor(1);
       };
