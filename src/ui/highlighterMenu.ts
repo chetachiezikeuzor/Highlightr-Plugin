@@ -1,5 +1,5 @@
 import type HighlightrPlugin from "src/plugin/main";
-import { App, Menu, Notice, Editor } from "obsidian";
+import { App, Menu, Notice, Editor, ButtonComponent } from "obsidian";
 import { HighlightrSettings } from "src/settings/settingsData";
 import { Coords } from "src/settings/types";
 
@@ -7,26 +7,20 @@ const highlighterMenu = (
   app: App,
   plugin: HighlightrPlugin,
   settings: HighlightrSettings,
-  editor: Editor,
-  event: MouseEvent
+  editor: Editor
 ): void => {
   if (editor && editor.hasFocus()) {
     const cursor = editor.getCursor("from");
     let coords: Coords;
     const editorCli = editor as any;
 
-    const menu = new Menu(plugin.app).addItem((item) => {
-      const itemDom = (item as any).dom as HTMLElement;
-      itemDom.setAttribute("style", "display: none");
-    });
-
-    const menuDom = (menu as any).dom as HTMLElement;
-    menuDom.addClass("highlighterContainer");
+    const colorboard = createEl("div");
+    colorboard.setAttribute("class", "colorboard")
 
     settings.highlighterOrder.forEach((highlighter) => {
-      const colorButton = menuDom.createEl("div");
+      const colorButton = createEl('div')
+      colorboard.appendChild(colorButton)
       colorButton.setAttribute("id", `${highlighter}`);
-
       colorButton.addEventListener("click", function (event) {
         (app as any).commands.executeCommandById(
           `highlightr-plugin:${highlighter}`
@@ -58,11 +52,18 @@ const highlighterMenu = (
     } else {
       return;
     }
+    console.log("ffzdebug colorboard showAtPosition");
+    console.log(colorboard);
 
-    menu.showAtPosition({
-      x: coords.right + 25,
-      y: coords.top + 20,
-    });
+    // colorboard.style.left = `${coords.right + 25}px`;
+    // colorboard.style.top = `${coords.top + 20}px`;
+
+    // menu.showAtPosition({
+    //   x: coords.right + 25,
+    //   y: coords.top + 20,
+    // });
+    
+    document.body.appendChild(colorboard);
   } else {
     new Notice("Focus must be in editor");
   }
