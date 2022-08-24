@@ -1,4 +1,11 @@
-import { Editor, App, Menu, Plugin, PluginManifest } from "obsidian";
+import {
+  Editor,
+  App,
+  Menu,
+  Plugin,
+  PluginManifest,
+  WorkspaceLeaf,
+} from "obsidian";
 import { wait } from "src/utils/util";
 import addIcons from "src/icons/customIcons";
 import { HighlightrSettingTab } from "../settings/settingsTab";
@@ -20,14 +27,18 @@ export default class HighlightrPlugin extends Plugin {
     addIcons();
 
     await this.loadSettings();
+
     this.app.workspace.onLayoutReady(() => {
       this.reloadStyles(this.settings);
       createHighlighterIcons(this.settings, this);
     });
+
     this.registerEvent(
       this.app.workspace.on("editor-menu", this.handleHighlighterInContextMenu)
     );
+
     this.addSettingTab(new HighlightrSettingTab(this.app, this));
+
     this.addCommand({
       id: "highlighter-plugin-menu",
       name: "Open Highlightr",
@@ -116,12 +127,7 @@ export default class HighlightrPlugin extends Plugin {
           }
         }
 
-        (selectedText && sufFirst === " ") ||
-        (!selectedText && sufFirst === " ")
-          ? editor.replaceSelection(`${prefix}${selectedText}${suffix}`)
-          : selectedText && sufFirst !== " "
-          ? editor.replaceSelection(`${prefix}${selectedText}${suffix} `)
-          : editor.replaceSelection(`${prefix}${selectedText}${suffix} `);
+        editor.replaceSelection(`${prefix}${selectedText}${suffix}`);
 
         return setCursor(1);
       };
@@ -148,6 +154,7 @@ export default class HighlightrPlugin extends Plugin {
           suffix: "</mark>",
         },
       };
+
       Object.keys(commandsMap).forEach((type) => {
         let highlighterpen = `highlightr-pen-${highlighterKey}`.toLowerCase();
         this.addCommand({
@@ -161,6 +168,7 @@ export default class HighlightrPlugin extends Plugin {
           },
         });
       });
+
       this.addCommand({
         id: "unhighlight",
         name: "Remove highlight",

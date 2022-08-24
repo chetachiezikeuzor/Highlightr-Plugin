@@ -168,7 +168,7 @@ details[open] summary.highlight-summary::before {
   transform: rotate(90deg);
 }
 
-/*highlgihtr component*/
+/*highlightr component*/
 
 @keyframes fade {
   0% {
@@ -183,17 +183,6 @@ details[open] summary.highlight-summary::before {
   100% {
     opacity: 1;
   }
-}
-
-.menu.highlighterContainer {
-  position: fixed;
-  width: 140px;
-  max-width: 225px;
-  max-height: 180px;
-  z-index: var(--layer-menu);
-  display: inline-block;
-  user-select: none;
-  overflow: hidden;
 }
 
 .menu.highlighterContainer {
@@ -214,23 +203,35 @@ details[open] summary.highlight-summary::before {
   border: 1px solid var(--background-modifier-border);
 }
 
-.menu.highlighterContainer div {
-  padding: 16px;
-  padding-top: 7px;
-  padding-bottom: 7px;
-  cursor: pointer;
-  text-align: left;
-  list-style-type: none;
+.menu.highlighterContainer .menu-item .menu-item-icon {
+  display: inline-block;
+  width: 28px;
+  color: var(--text-muted);
+  position: relative;
+  top: 2px;
+}
+
+.menu.highlighterContainer .menu-item {
+  display: block;
+  padding: 2px 14px 3px 14px;
+  align-items: unset;
+  margin: auto;
+  cursor: var(--cursor);
+  font-size: 14px;
+  height: 32px;
+  line-height: 31px;
+  white-space: nowrap;
+  border-radius: 0;
   border-bottom: 1px solid var(--background-modifier-border);
 }
 
-.menu.highlighterContainer div:last-child {
+.menu.highlighterContainer .menu-item:last-of-type {
   border-bottom: none;
 }
 
 /*----------------------------------------------------------------
-    SETTINGS TAB
-    ----------------------------------------------------------------*/
+SETTINGS TAB
+----------------------------------------------------------------*/
 
 button.HighlightrSettingsButton {
   padding: 4px 14px;
@@ -328,8 +329,6 @@ button:not(.mod-cta):not(.mod-warning).HighlightrSettingsButton.HighlightrSettin
   box-shadow: 0px 3px 32px rgb(31 38 135 / 15%);
 }
 
-/**/
-
 /*----------------------------------------------------------------
 HIGHLIGHTR SUPPORT
 ----------------------------------------------------------------*/
@@ -376,7 +375,9 @@ HIGHLIGHTR SUPPORT
   display: block;
 }
 
-/*! Pickr 1.8.2 MIT | https://github.com/Simonwep/pickr */
+/*----------------------------------------------------------------
+PICKR 1.8.2 MIT | https://github.com/Simonwep/pickr
+----------------------------------------------------------------*/
 .pickr {
   position: relative;
   overflow: visible;

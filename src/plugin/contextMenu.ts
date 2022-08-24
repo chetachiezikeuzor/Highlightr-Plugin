@@ -23,10 +23,11 @@ export default function contextMenu(
         highlighterMenu(app, plugin, settings, editor);
       });
   });
+
   if (selection) {
     menu.addItem((item) => {
       item
-        .setTitle("Unhighlight")
+        .setTitle("Erase highlight")
         .setIcon("highlightr-eraser")
         .onClick((e) => {
           if (editor.getSelection()) {
