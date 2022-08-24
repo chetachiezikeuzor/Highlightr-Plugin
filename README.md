@@ -5,7 +5,7 @@
 
 <img src="https://raw.githubusercontent.com/chetachiezikeuzor/Highlightr-Plugin/master/assets/Highlightr%20Demo%20Header.png" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
-### Status: This plugin will be available in Obsidian plugin store once it has been accepted
+### Status: This plugin is currently available in the Obsidian plugin store
 
 _Sigh_. Don't you wish you could satiate your creative drive by highlighting your notes? I mean, yes we can use the markdown syntax for creating highlights, but what about custom colors?? Oh yea, we know all about those cool CSS hacks that would "support" this, but what ever happened to avoiding proprietary formatting? Ok, well we could just use HTML `<mark>` tags right? But jeez, it's such a pain to type out! Alright alright, how about a Templater template? [Kinda like this one](https://www.reddit.com/r/ObsidianMD/comments/nu0olr/multicolored_highlighting_in_obsidian/). But this just doesn't feel… native. Well, looks like Highlightr is here to save the day!!!
 
