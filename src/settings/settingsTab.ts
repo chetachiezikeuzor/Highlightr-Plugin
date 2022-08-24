@@ -207,13 +207,12 @@ export class HighlightrSettingTab extends PluginSettingTab {
                 buttonEl.stopImmediatePropagation();
                 new Notice("This color already exists");
               }
-            } else if (color && !value) {
-              new Notice("Highlighter hex code missing");
-            } else if (!color && value) {
-              new Notice("Highlighter name missing");
-            } else {
-              new Notice("Highlighter values missing");
             }
+            color && !value
+              ? new Notice("Highlighter hex code missing")
+              : !color && value
+              ? new Notice("Highlighter name missing")
+              : new Notice("Highlighter values missing"); // else
           });
       });
 
