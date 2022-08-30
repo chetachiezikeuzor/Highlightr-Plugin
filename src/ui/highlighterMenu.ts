@@ -1,22 +1,26 @@
-import type HighlightrPlugin from "src/plugin/main";
-import { App, Menu, Notice, Editor } from "obsidian";
+import { Menu, Notice } from "obsidian";
 import { HighlightrSettings } from "src/settings/settingsData";
-import { Coords } from "src/settings/types";
+import {
+  Coords,
+  EnhancedApp,
+  EnhancedEditor,
+  EnhancedMenu,
+} from "src/settings/types";
 
 const highlighterMenu = (
-  app: App,
-  plugin: HighlightrPlugin,
+  app: EnhancedApp,
   settings: HighlightrSettings,
-  editor: Editor
+  editor: EnhancedEditor
 ): void => {
   if (editor && editor.hasFocus()) {
     const cursor = editor.getCursor("from");
     let coords: Coords;
-    const editorCli = editor as any;
 
-    const menu = new Menu(plugin.app);
+    const menu = new Menu() as unknown as EnhancedMenu;
 
-    const menuDom = (menu as any).dom as HTMLElement;
+    menu.setUseNativeMenu(false);
+
+    const menuDom = menu.dom;
     menuDom.addClass("highlighterContainer");
 
     settings.highlighterOrder.forEach((highlighter) => {
@@ -24,19 +28,16 @@ const highlighterMenu = (
         highlighterItem.setTitle(highlighter);
         highlighterItem.setIcon(`highlightr-pen-${highlighter}`.toLowerCase());
         highlighterItem.onClick(() => {
-          (app as any).commands.executeCommandById(
-            `highlightr-plugin:${highlighter}`
-          );
+          app.commands.executeCommandById(`highlightr-plugin:${highlighter}`);
         });
       });
     });
 
-    if (editorCli.cursorCoords) {
-      coords = editorCli.cursorCoords(true, "window");
-    } else if (editorCli.coordsAtPos) {
+    if (editor.cursorCoords) {
+      coords = editor.cursorCoords(true, "window");
+    } else if (editor.coordsAtPos) {
       const offset = editor.posToOffset(cursor);
-      coords =
-        editorCli.cm.coordsAtPos?.(offset) ?? editorCli.coordsAtPos(offset);
+      coords = editor.cm.coordsAtPos?.(offset) ?? editor.coordsAtPos(offset);
     } else {
       return;
     }

@@ -1,11 +1,4 @@
-import {
-  Editor,
-  App,
-  Menu,
-  Plugin,
-  PluginManifest,
-  WorkspaceLeaf,
-} from "obsidian";
+import { Editor, Menu, Plugin, PluginManifest } from "obsidian";
 import { wait } from "src/utils/util";
 import addIcons from "src/icons/customIcons";
 import { HighlightrSettingTab } from "../settings/settingsTab";
@@ -16,9 +9,11 @@ import highlighterMenu from "src/ui/highlighterMenu";
 import { createHighlighterIcons } from "src/icons/customIcons";
 
 import { createStyles } from "src/utils/createStyles";
+import { EnhancedApp, EnhancedEditor } from "src/settings/types";
+
 export default class HighlightrPlugin extends Plugin {
-  app: App;
-  editor: Editor;
+  app: EnhancedApp;
+  editor: EnhancedEditor;
   manifest: PluginManifest;
   settings: HighlightrSettings;
 
@@ -43,9 +38,9 @@ export default class HighlightrPlugin extends Plugin {
       id: "highlighter-plugin-menu",
       name: "Open Highlightr",
       icon: "highlightr-pen",
-      editorCallback: (editor) => {
+      editorCallback: (editor: EnhancedEditor) => {
         !document.querySelector(".menu.highlighterContainer")
-          ? highlighterMenu(this.app, this, this.settings, editor)
+          ? highlighterMenu(this.app, this.settings, editor)
           : true;
       },
     });
@@ -208,7 +203,10 @@ export default class HighlightrPlugin extends Plugin {
     console.log("Highlightr unloaded");
   }
 
-  handleHighlighterInContextMenu = (menu: Menu, editor: Editor): void => {
+  handleHighlighterInContextMenu = (
+    menu: Menu,
+    editor: EnhancedEditor
+  ): void => {
     contextMenu(this.app, menu, editor, this, this.settings);
   };
 

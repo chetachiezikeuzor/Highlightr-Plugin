@@ -212,11 +212,11 @@ details[open] summary.highlight-summary::before {
 }
 
 .menu.highlighterContainer .menu-item {
-  display: block;
+  display: flex;
   padding: 2px 14px 3px 14px;
   align-items: unset;
   margin: auto;
-  cursor: var(--cursor);
+  cursor: pointer;
   font-size: 14px;
   height: 32px;
   line-height: 31px;

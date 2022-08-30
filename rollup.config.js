@@ -23,6 +23,7 @@ const output = [
       format: "cjs",
       exports: "default",
       banner,
+      sourcemap: "inline",
     },
     external: ["obsidian"],
     plugins: [

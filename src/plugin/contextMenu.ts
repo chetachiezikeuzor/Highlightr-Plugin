@@ -1,13 +1,13 @@
-import type { App, Editor } from "obsidian";
 import type HighlightrPlugin from "src/plugin/main";
 import { Menu } from "obsidian";
 import { HighlightrSettings } from "src/settings/settingsData";
 import highlighterMenu from "src/ui/highlighterMenu";
+import { EnhancedApp, EnhancedEditor } from "src/settings/types";
 
 export default function contextMenu(
-  app: App,
+  app: EnhancedApp,
   menu: Menu,
-  editor: Editor,
+  editor: EnhancedEditor,
   plugin: HighlightrPlugin,
   settings: HighlightrSettings
 ): void {
@@ -20,7 +20,7 @@ export default function contextMenu(
       .setTitle("Highlight")
       .setIcon("highlightr-pen")
       .onClick(async (_) => {
-        highlighterMenu(app, plugin, settings, editor);
+        highlighterMenu(app, settings, editor);
       });
   });
 
