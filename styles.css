@@ -206,7 +206,6 @@ details[open] summary.highlight-summary::before {
 .menu.highlighterContainer .menu-item .menu-item-icon {
   display: inline-block;
   width: 28px;
-  color: var(--text-muted);
   position: relative;
   top: 2px;
 }
