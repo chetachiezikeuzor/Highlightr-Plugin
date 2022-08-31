@@ -19,7 +19,7 @@ export default function contextMenu(
     item
       .setTitle("Highlight")
       .setIcon("highlightr-pen")
-      .onClick(async (_) => {
+      .onClick(async (e) => {
         highlighterMenu(app, settings, editor);
       });
   });

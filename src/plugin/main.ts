@@ -18,7 +18,7 @@ export default class HighlightrPlugin extends Plugin {
   settings: HighlightrSettings;
 
   async onload() {
-    console.log("Highlightr v" + this.manifest.version + " loaded");
+    console.log(`Highlightr v${this.manifest.version} loaded`);
     addIcons();
 
     await this.loadSettings();

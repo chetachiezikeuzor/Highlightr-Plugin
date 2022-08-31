@@ -229,7 +229,7 @@ export class HighlightrSettingTab extends PluginSettingTab {
       forceFallback: true,
       fallbackClass: "highlighter-sortable-fallback",
       easing: "cubic-bezier(1, 0, 0, 1)",
-      onSort: (command) => {
+      onSort: (command: { oldIndex: number; newIndex: number }) => {
         const arrayResult = this.plugin.settings.highlighterOrder;
         const [removed] = arrayResult.splice(command.oldIndex, 1);
         arrayResult.splice(command.newIndex, 0, removed);
