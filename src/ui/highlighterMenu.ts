@@ -18,7 +18,7 @@ const highlighterMenu = (
 
     const menu = new Menu() as unknown as EnhancedMenu;
 
-    menu.setUseNativeMenu(false);
+    // menu.setUseNativeMenu(false);
 
     const menuDom = menu.dom;
     menuDom.addClass("highlighterContainer");
