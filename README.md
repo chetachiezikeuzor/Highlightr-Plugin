@@ -21,7 +21,7 @@ Make beautiful highlights in your notes to supplement your note-taking. The colo
 
 ## How it Works
 
-Although the plugin supplies you with a beautiful assortment of colors, you are free to customize your highlighter menu as you wish! Create new highlighter colors by openning the plugin settings tab. There, you will see an input, color picker and an `save` button. Use the input to set the name of your brand new highlight, then use the color picker to pick the color for said highlight. Then use the `save` button to save the new highlight into your highlighter menu.
+Although the plugin supplies you with a beautiful assortment of colors, you are free to customize your highlighter menu as you wish! Create new highlighter colors by openning the plugin settings tab. There, you will see an input, color picker and a `save` button. Use the input to set the name of your brand new highlight, then use the color picker to pick the color for said highlight. Then use the `save` button to save the new highlight into your highlighter menu.
 
 <img src="https://user-images.githubusercontent.com/79069364/142739491-f6f75912-8689-4eef-a10e-67a820471d3c.png" style=" box-shadow: 0 2px 8px 0 var(--background-modifier-border); border-radius: 8px; ">
 
