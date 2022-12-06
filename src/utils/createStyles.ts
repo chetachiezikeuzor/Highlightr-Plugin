@@ -15,6 +15,9 @@ export function createStyles(settings: HighlightrSettings) {
   let header = document.getElementsByTagName("HEAD")[0];
   header.appendChild(styleSheet);
 
+  // Inherit theme's text color
+  addNewStyle(`mark, .markdown-preview-view mark`, `color: inherit;`, styleSheet)
+
   Object.keys(settings.highlighters).forEach((highlighter) => {
     let colorLowercase = highlighter.toLowerCase();
     addNewStyle(
