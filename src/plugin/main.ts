@@ -122,7 +122,13 @@ export default class HighlightrPlugin extends Plugin {
           }
         }
 
-        editor.replaceSelection(`${prefix}${selectedText}${suffix}`);
+        const isSelectionHighlighted = selectedText.startsWith("<mark") && selectedText.endsWith("</mark>");
+
+        if (isSelectionHighlighted) {
+          editor.replaceSelection(`${prefix}${selectedText.slice(prefix.length, selectedText.length - suffix.length)}${suffix}`);
+        } else {
+          editor.replaceSelection(`${prefix}${selectedText}${suffix}`);
+        }
 
         return setCursor(1);
       };

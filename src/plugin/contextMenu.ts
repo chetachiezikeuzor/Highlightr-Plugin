@@ -17,7 +17,7 @@ export default function contextMenu(
     const itemDom = (item as any).dom as HTMLElement;
     itemDom.addClass("highlighter-button");
     item
-      .setTitle("Highlight")
+      .setTitle(selection.startsWith("<mark") ? "Change color" : "Highlight")
       .setIcon("highlightr-pen")
       .onClick(async (e) => {
         highlighterMenu(app, settings, editor);
