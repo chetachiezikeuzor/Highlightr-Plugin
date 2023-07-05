@@ -10,6 +10,7 @@
     rgba(255, 255, 255, 0) 40%,
     var(--lowlight-background) 40%
   ) !important;
+  color: white;
 }
 
 .highlightr-lowlight .workspace-split.mod-left-split mark,
@@ -98,6 +99,7 @@
 /*realistic*/
 .highlightr-realistic mark,
 .highlightr-realistic .markdown-preview-view mark {
+  color: white;
   margin: 0 -0.05em;
   padding: 0.1em 0.4em;
   border-radius: 0.8em 0.3em;
@@ -263,14 +265,22 @@ button.HighlightrSettingsButton svg {
 }
 
 .modal.mod-settings
-  button:not(.mod-cta):not(.mod-warning).HighlightrSettingsButton.HighlightrSettingsButtonAdd,
-button:not(.mod-cta):not(.mod-warning).HighlightrSettingsButton.HighlightrSettingsButtonAdd {
+  button:not(.mod-cta):not(
+    .mod-warning
+  ).HighlightrSettingsButton.HighlightrSettingsButtonAdd,
+button:not(.mod-cta):not(
+    .mod-warning
+  ).HighlightrSettingsButton.HighlightrSettingsButtonAdd {
   background-color: var(--interactive-accent);
 }
 
 .modal.mod-settings
-  button:not(.mod-cta):not(.mod-warning).HighlightrSettingsButton.HighlightrSettingsButtonDelete,
-button:not(.mod-cta):not(.mod-warning).HighlightrSettingsButton.HighlightrSettingsButtonDelete {
+  button:not(.mod-cta):not(
+    .mod-warning
+  ).HighlightrSettingsButton.HighlightrSettingsButtonDelete,
+button:not(.mod-cta):not(
+    .mod-warning
+  ).HighlightrSettingsButton.HighlightrSettingsButtonDelete {
   background-color: #989cab;
 }
 
