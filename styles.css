@@ -10,6 +10,7 @@
     rgba(255, 255, 255, 0) 40%,
     var(--lowlight-background) 40%
   ) !important;
+  color: unset !important;
 }
 
 .highlightr-lowlight .workspace-split.mod-left-split mark,
@@ -42,9 +43,10 @@
   padding-bottom: 5px;
   background-image: linear-gradient(
     360deg,
-    rgba(255, 255, 255, 0) 28%,
-    var(--floating-background) 28%
+    rgba(255, 255, 255, 0) 14%,
+    var(--floating-background) 14%
   ) !important;
+  color: unset !important;
 }
 
 .highlightr-floating .workspace-split.mod-left-split mark,
@@ -76,6 +78,7 @@
   border-radius: 0.2em;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
+  color: unset !important;
 }
 
 .highlightr-rounded span.cm-highlight {
@@ -104,6 +107,7 @@
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
   text-shadow: 0 0 0.75em var(--background-primary-alt);
+  color: unset !important;
 }
 
 .highlightr-realistic.hide-tokens .cm-s-obsidian span.cm-highlight,
@@ -135,6 +139,15 @@
   border-radius: 0 0.3em 0.8em 0;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
+}
+
+/**/
+
+/*colorshift*/
+.highlightr-colorshift mark,
+.highlightr-colorshift .markdown-preview-view mark {
+  background: unset !important;
+  font-weight: bold;
 }
 
 /**/

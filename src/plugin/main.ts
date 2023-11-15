@@ -145,7 +145,7 @@ export default class HighlightrPlugin extends Plugin {
           prefix:
             this.settings.highlighterMethods === "css-classes"
               ? `<mark class="hltr-${highlighterKey.toLowerCase()}">`
-              : `<mark style="background: ${this.settings.highlighters[highlighterKey]};">`,
+              : `<mark style="color: ${this.settings.highlighters[highlighterKey]}; background: ${this.settings.highlighters[highlighterKey]};">`,
           suffix: "</mark>",
         },
       };
@@ -196,6 +196,10 @@ export default class HighlightrPlugin extends Plugin {
     document.body.classList.toggle(
       "highlightr-realistic",
       this.settings.highlighterStyle === "realistic"
+    );
+    document.body.classList.toggle(
+      "highlightr-colorshift",
+      this.settings.highlighterStyle === "colorshift"
     );
   };
 
