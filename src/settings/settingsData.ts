@@ -4,6 +4,7 @@ export const HIGHLIGHTER_STYLES = [
   "floating",
   "rounded",
   "realistic",
+  "colorshift"
 ];
 
 export const HIGHLIGHTER_METHODS = ["css-classes", "inline-styles"];
